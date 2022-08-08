@@ -42,6 +42,15 @@ services:
             test: ["CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}"]
             retries: 3
             timeout: 5s
+    phppgadmin:
+        image: dpage/pgadmin4
+        ports:
+            - '8080:80'
+        environment:
+            PGADMIN_DEFAULT_EMAIL: 'game.developer.ryo@gmail.com'
+            PGADMIN_DEFAULT_PASSWORD: 'test'
+        networks:
+            - sail
 networks:
     sail:
         driver: bridge
