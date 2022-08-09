@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="人間社会に疲れた人が作った、動物の言葉でしか呟けないSNS">
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
