@@ -32,8 +32,8 @@ return [
     ],
 
     'twitter' => [
-        'client_id' => env('TWITTER_CLIENT_ID'),
-        'client_secret' => env('TWITTER_CLIENT_SECRET'),
+        'client_id' => env('TWITTER_CONSUMER_API_KEYS'),
+        'client_secret' => env('TWITTER_CONSUMER_API_KEY_SECRET'),
         'redirect' => env('APP_URL').'/login/twitter/callback',
     ],
 
