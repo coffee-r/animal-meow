@@ -23,4 +23,14 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// 利用規約
+Route::get('/terms', function () {
+    return Inertia::render('Terms');
+})->name('terms');
+
+// プライバシーポリシー
+Route::get('/privacy', function () {
+    return Inertia::render('Privacy');
+})->name('privacy');
+
 // require __DIR__.'/auth.php';
