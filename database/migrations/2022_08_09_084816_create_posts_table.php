@@ -19,8 +19,6 @@ return new class extends Migration
             $table->unsignedBigInteger('animal_type_id');
             $table->string('message');
             $table->unsignedBigInteger('like_total_count')->default(0);
-            $table->string('ip_address');
-            $table->string('user_agent');
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();

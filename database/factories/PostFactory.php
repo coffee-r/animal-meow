@@ -26,8 +26,6 @@ class PostFactory extends Factory
             'animal_type_id' => $animalType->id,
             'message' => fake()->text(),
             'like_total_count' => mt_rand(0, 99999999999999),
-            'ip_address' => fake()->ipv4(),
-            'user_agent' => fake()->userAgent()
         ];
     }
 }
