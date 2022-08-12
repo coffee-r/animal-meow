@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('twitter_users', function (Blueprint $table) {
             $table->string('twitter_id')->primary();
-            $table->unsignedBigInteger('user_id');
-            $table->string('token');
-            $table->string('token_secret');
+            $table->unsignedBigInteger('animal_meow_user_id');
+            $table->string('username');
+            $table->string('access_token');
+            $table->timestamp('access_token_time_limit');
+            $table->string('refresh_token');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('animal_meow_user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 

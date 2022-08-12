@@ -22,7 +22,7 @@ class UserFactory extends Factory
             'email_verified_at' => null,
             'password' => null,
             'remember_token' => null,
-            'avatar_image_url' => 'http://abs.twimg.com/sticky/default_profile_images/default_profile.png',
+            'profile_image_url' => 'http://abs.twimg.com/sticky/default_profile_images/default_profile.png',
         ];
     }
 }

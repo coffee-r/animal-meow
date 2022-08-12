@@ -20,9 +20,7 @@ return new class extends Migration
             $table->string('message');
             $table->unsignedBigInteger('like_total_count')->default(0);
             $table->timestamps();
-            
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreign('animal_type_id')->references('id')->on('animal_types');
         });
     }
 

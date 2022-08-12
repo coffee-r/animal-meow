@@ -19,10 +19,12 @@ class TwitterUserSeeder extends Seeder
         $users = User::all();
         foreach ($users as $key => $user) {
             TwitterUser::insert([
-                'twitter_id' => Str::random(20),
-                'user_id' => $user->id,
-                'token' => Str::random(50),
-                'token_secret' => Str::random(50),
+                'twitter_id' => Str::random(30),
+                'animal_meow_user_id' => $user->id,
+                'username' => Str::random(20),
+                'access_token' => Str::random(50),
+                'access_token_time_limit' => fake()->dateTimeBetween($startDate = 'now', $endDate = '+2 week'),
+                'refresh_token' => Str::random(50),
             ]);
         }
     }
