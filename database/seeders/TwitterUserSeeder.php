@@ -21,7 +21,7 @@ class TwitterUserSeeder extends Seeder
             TwitterUser::insert([
                 'twitter_id' => Str::random(30),
                 'animal_meow_user_id' => $user->id,
-                'username' => Str::random(20),
+                'nickname' => Str::random(20),
                 'access_token' => Str::random(50),
                 'access_token_time_limit' => fake()->dateTimeBetween($startDate = 'now', $endDate = '+2 week'),
                 'refresh_token' => Str::random(50),

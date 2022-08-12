@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('twitter_users', function (Blueprint $table) {
             $table->string('twitter_id')->primary();
             $table->unsignedBigInteger('animal_meow_user_id');
-            $table->string('username');
+            $table->string('nickname');
             $table->string('access_token');
             $table->timestamp('access_token_time_limit');
             $table->string('refresh_token');
