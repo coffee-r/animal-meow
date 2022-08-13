@@ -1,12 +1,30 @@
 <script setup>
-    import { Link } from "@inertiajs/inertia-vue3";
+    import { reactive } from "vue"
+    import { Inertia } from '@inertiajs/inertia'
     import LoginUserSpHeader from "@/Components/LoginUserSpHeader.vue";
+    import FixedPostButton from "@/Components/FixedPostButton.vue";
     import LoginUserPcSideMenu from "@/Components/LoginUserPcSideMenu.vue";
+
+    const submitLogout = function(){
+        Inertia.post('/logout');
+    }
+
+    const withdrawalForm = reactive({
+      confirmText: null,
+    })
+
+    const submitWithdrawal = function(){
+        Inertia.post('/withdrawal', withdrawalForm);
+    }
+
 </script>
 
 <template>
     <!-- スマホのヘッダーメニュー -->
     <LoginUserSpHeader />
+
+    <!-- スマホ・タブレットの投稿画面リンク -->
+    <FixedPostButton />
 
     <main class="lg:flex">
 
@@ -40,8 +58,7 @@
             <div class="mx-6 my-4 py-8 px-4 max-w-full bg-white rounded-lg border border-gray-200 shadow-md">
                 <h2 class="font-bold text-2xl lg:text-4xl">ログアウト</h2>
         
-                <form method="POST" action="{{ route('logout') }}" class="w-full m-4">
-                    @csrf
+                <form @submit.prevent="submitLogout" class="w-full m-4">
                     <button type="submit" class="text-2xl bg-gray-900 hover:bg-gray-500 text-white font-bold py-4 px-12 rounded-full">ログアウトする</button>
                 </form>
             </div>
@@ -56,9 +73,8 @@
                     <li>他のユーザー投稿にしたいいねの数は削除しません。</li>
                 </ul>
         
-                <form method="POST" action="{{ route('withdrawal') }}" class="w-full m-4">
-                    @csrf
-                    <input type="text" name="confirm-text" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"  placeholder="「退会する」と入力してボタンを押す">
+                <form @submit.prevent="submitWithdrawal" class="w-full m-4">
+                    <input type="text" v-model="withdrawalForm.confirmText" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"  placeholder="「退会する」と入力してボタンを押す">
                     <button type="submit" class="text-2xl bg-red-600 hover:bg-red-400 text-white font-bold py-4 px-12 rounded-full">退会する</button>
                 </form>
         
