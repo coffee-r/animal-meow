@@ -37,7 +37,7 @@ class WithdrawalController extends Controller
         // コミット
         DB::commit();
 
-        return redirect('/after_withdrawal');
+        return redirect('/after_withdrawal')->with('successMessages', ['退会しました。']);
 
     }
 }

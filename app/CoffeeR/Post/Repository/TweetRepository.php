@@ -47,7 +47,7 @@ class TweetRepository
         $tweetResponseArray = json_decode($tweetResponse->getBody(), true);
 
         return [
-            'tweet_link' => "https://twitter.com/".$twitterUser->nickname."/status/".$tweetResponseArray['data']['id']
+            'tweetLink' => "https://twitter.com/".$twitterUser->nickname."/status/".$tweetResponseArray['data']['id']
         ];
     }
 }

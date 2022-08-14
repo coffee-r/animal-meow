@@ -36,6 +36,9 @@ class PostController extends Controller
             'message' => 'required|max:120',
         ]);
 
+        // フラッシュメッセージ用変数
+        $successMessages = [];
+
         // 値オブジェクトを通じて投稿メッセージをバリデーション
         $animalMessageFactory = new AnimalMessageFactory();
         $animalMessage = $animalMessageFactory->create($request->input('animalTypeId'), $request->input('message'));
@@ -46,15 +49,16 @@ class PostController extends Controller
         $post->animal_type_id = $request->input('animalTypeId');
         $post->message = $animalMessage->toString();
         $post->save();
+        $successMessages[] = "投稿しました。";
 
         // ツイート
         if($request->input('withTweet')){
             $tweetRepository = new TweetRepository();
             $tweetResult = $tweetRepository->tweet($animalMessage->toString() . " #あにまるにゃ〜ん");
-            var_dump($tweetResult);exit();
+            $successMessages[] = "<a class='underline' href='".$tweetResult['tweetLink']."' target='_blank'>Twitter</a>に投稿しました。";
         }
 
-        return redirect('/home');
+        return redirect('/home')->with('successMessages', $successMessages);
     }
 
     public function destroy(Request $request)

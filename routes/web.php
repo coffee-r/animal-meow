@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
     // ログアウト処理
     Route::post('/logout', function(){
         Auth::logout();
-        return redirect(route('index'));
+        return redirect(route('index'))->with('successMessages', ['ログアウトしました。']);
     })->name('logout');
 
     // 退会処理

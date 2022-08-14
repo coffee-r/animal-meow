@@ -8,6 +8,13 @@ defineProps({
 </script>
 
 <template>
+    <!-- ログアウトの通知 -->
+    <div v-if="$page.props.flash.successMessages">
+        <div v-for="message in $page.props.flash.successMessages" :key="message" class="p-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+            <span class="font-bold">{{ message }}</span> 
+        </div>
+    </div>
+
     <main class="lg:flex">
         <section class="lg:flex lg:flex-col lg:w-full lg:sticky lg:h-screen lg:top-0">
             <header class="lg:flex-none">
@@ -34,7 +41,7 @@ defineProps({
             </div>
 
             <footer class="hidden my-10 lg:block lg:flex-none">
-                <ul class="px-24 flex justify-around">
+                <ul class="px-20 flex justify-around">
                     <Link href="/terms"><li>利用規約</li></Link>
                     <Link href="/privacy"><li>プライバシーポリシー</li></Link>
                     <a href="https://twitter.com/plus_marumaru" target="_blank"><li>&copy; 2022 coffee-r</li></a>
