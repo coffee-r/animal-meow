@@ -38,12 +38,14 @@
 
             <PostCard
                 v-for="post in posts"
-                v-bind:key="post.id"
-                v-bind:name="post.name"
+                v-bind:key="post.post_id"
+                v-bind:post_id="post.post_id"
+                v-bind:user_id="post.user_id"
+                v-bind:user_name="post.user_name"
                 v-bind:message="post.message"
                 v-bind:like_total_count="post.like_total_count"
                 v-bind:avatar_image_url="post.avatar_image_url"
-                v-bind:created_at="post.created_at"
+                v-bind:post_created_at="post.post_created_at"
             ></PostCard>
         </article>
     </main>

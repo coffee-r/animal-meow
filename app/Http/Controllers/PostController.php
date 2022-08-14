@@ -61,29 +61,24 @@ class PostController extends Controller
         return redirect('/home')->with('successMessages', $successMessages);
     }
 
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        // フォームバリデーション
-        $validated = $request->validate([
-            'post-id' => 'required'
-        ]);
-
         // 投稿を取得
-        $post = Post::find($request->input('post-id'));
+        $post = Post::find($id);
 
         // 存在しない投稿は削除できない
         if(!$post){
-            throw new Exception('post_id ' . $request->input('post-id') . " not exist");
+            throw new Exception('post.id ' . $id . " not exist");
         }
 
         // 他人の投稿は削除できない
         if($post->user_id !== Auth::id()){
-            throw new Exception('post_id ' . $request->input('post-id') . " post can only be deleted user_id ".$post->user_id);
+            throw new Exception('post.id ' . $id . " post can only be deleted user_id ".$post->user_id);
         }
 
         // 投稿を削除
         $post->delete();        
 
-        return redirect('/home')->with('flash_success_messages', ['投稿を削除しました。']);
+        return redirect('/home')->with('successMessages', ['投稿を削除しました。']);
     }
 }
