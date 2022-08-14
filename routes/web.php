@@ -41,6 +41,9 @@ Route::middleware('auth')->group(function () {
     // 投稿処理
     Route::post('/post', 'App\Http\Controllers\PostController@store')->name('post.store');
 
+    // 投稿削除処理
+    Route::delete('/post/{id}', 'App\Http\Controllers\PostController@destroy')->name('post.destroy');
+
     // その他
     Route::get('/others', function () {
         return Inertia::render('Others');
