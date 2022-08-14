@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('likes', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('like_count');
             $table->timestamps();
-            $table->primary(['user_id', 'post_id']);
+            $table->unique(['user_id', 'post_id']);
         });
     }
 
