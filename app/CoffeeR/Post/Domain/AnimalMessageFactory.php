@@ -4,7 +4,7 @@ namespace App\CoffeeR\Post\Domain;
 
 class AnimalMessageFactory
 {
-    public function create(int $animalType, string $message)
+    public function create(int $animalType, string $message): AnimalMessageInterface
     {
         switch ($animalType) {
             case 1:
