@@ -33,9 +33,16 @@ const props = defineProps({
     },
 });
 
+const like_total_count_reactive = ref(props.like_total_count);
+
 
 const submitDeletePost = function(){
     Inertia.delete('/post/' + props.post_id);
+}
+
+const addLikeCount = function(){
+    const response = axios.post("/api/likes/" + props.post_id);
+    like_total_count_reactive.value += 1;
 }
 
 </script>
@@ -51,8 +58,8 @@ const submitDeletePost = function(){
             <p class="text-sm text-gray-700">{{ message }}</p>
             <div class="flex justify-between">
                 <div>
-                    <img class="inline w-4 h-4" src="/images/like_icon.svg" />
-                    <span class="text-sm">{{ like_total_count }} いいね</span>
+                    <img @click="addLikeCount" class="inline w-4 h-4" src="/images/like_icon.svg" />
+                    <span class="text-sm">{{ like_total_count_reactive }} いいね</span>
                 </div>
                 <p class="leading-6 text-sm text-gray-400"></p>
                 <p class="leading-6 text-sm text-gray-400">{{ post_created_at }}</p>
