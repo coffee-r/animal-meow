@@ -32,8 +32,16 @@
     )
 
     const addMessage = function(word){
-        console.log('bbb');
+        // 120文字以上は投稿できない
+        if(postForm.message.length > 120){
+            return;
+        }
         postForm.message += word;
+    }
+
+    const backMessage = function(){
+        console.log('bbbbb');
+        postForm.message = postForm.message.slice(0, -1);
     }
     
 
@@ -68,7 +76,7 @@
 
                     <textarea v-model="postForm.message" rows="4" class="block mt-4 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
 
-                    <AnimalIME class="mt-2" v-bind:words=currentAnimalAvailableWords @addWordNotification='addMessage' />
+                    <AnimalIME class="mt-2" v-bind:words=currentAnimalAvailableWords @backWordNotification='backMessage' @addWordNotification='addMessage' />
 
                     <br/>
 
