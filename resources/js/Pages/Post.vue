@@ -4,7 +4,7 @@
     import AnimalIME from "@/Components/AnimalIME.vue";
     import LoginUserSpHeader from "@/Components/LoginUserSpHeader.vue";
     import LoginUserPcSideMenu from "@/Components/LoginUserPcSideMenu.vue";
-
+    import ValidationErrors from "@/Components/ValidationErrors.vue";
 
     const props = defineProps({
         animals: Array,
@@ -63,6 +63,10 @@
 
         <!-- 投稿フォーム -->
         <article class="bg-blue-100 bg-opacity-20 py-1 lg:w-full lg:mt-0">
+
+            <!-- バリデーションエラー表示 -->
+            <ValidationErrors />
+
             <div class="flex mx-6 my-4 p-2 max-w-full bg-white rounded-lg border border-gray-200 shadow-md">
                 <form @submit.prevent="submitPost" class="w-full m-4">
 

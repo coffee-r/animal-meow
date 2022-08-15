@@ -4,6 +4,7 @@
     import LoginUserSpHeader from "@/Components/LoginUserSpHeader.vue";
     import FixedPostButton from "@/Components/FixedPostButton.vue";
     import LoginUserPcSideMenu from "@/Components/LoginUserPcSideMenu.vue";
+    import ValidationErrors from "@/Components/ValidationErrors.vue";
 
     const submitLogout = function(){
         Inertia.post('/logout');
@@ -33,6 +34,10 @@
 
         <!-- その他 -->
         <article class="bg-blue-100 bg-opacity-20 lg:w-full lg:mt-0">
+
+            <!-- バリデーションエラー表示 -->
+            <ValidationErrors />
+
             <div class="mx-6 my-4 py-8 px-4 max-w-full bg-white rounded-lg border border-gray-200 shadow-md">
                 <h2 class="font-bold text-2xl lg:text-4xl">開発のために主に利用や参考にさせて頂いたもの</h2>
         
