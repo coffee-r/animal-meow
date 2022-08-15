@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    /**
+     * ホーム画面アクション
+     *
+     * @return void
+     */
     public function index()
     {
         // 最新の投稿を100件取得
@@ -16,12 +21,17 @@ class HomeController extends Controller
                      ->orderBy('posts.id', 'desc')
                      ->take(100)
                      ->get();
-        
+
         return Inertia::render('Home', [
             'posts' => $posts,
         ]);
     }
 
+    /**
+     * 自分の投稿一覧画面アクション
+     *
+     * @return void
+     */
     public function me()
     {
         // 最新の自分の投稿を100件取得
@@ -31,7 +41,7 @@ class HomeController extends Controller
                      ->orderBy('posts.id', 'desc')
                      ->take(100)
                      ->get();
-        
+
         return Inertia::render('Home', [
             'posts' => $posts,
         ]);

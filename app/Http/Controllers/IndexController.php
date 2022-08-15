@@ -7,6 +7,11 @@ use App\Models\Post;
 
 class IndexController extends Controller
 {
+    /**
+     * トップページアクション
+     *
+     * @return void
+     */
     public function index()
     {
         // 最新の投稿を10件取得
@@ -15,7 +20,7 @@ class IndexController extends Controller
                      ->orderBy('posts.id', 'desc')
                      ->take(10)
                      ->get();
-        
+
         return Inertia::render('Index', [
             'posts' => $posts,
         ]);

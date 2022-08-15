@@ -17,7 +17,7 @@ class AnimalMessageFactory
                 $animalMessage = new GoriraMessage($message);
                 break;
             default:
-                throw new \InvalidArgumentException();
+                throw new \InvalidArgumentException('animal type id ' . $animalType . ' not supported');
                 break;
         }
 

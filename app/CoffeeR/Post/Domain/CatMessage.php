@@ -2,11 +2,14 @@
 
 namespace App\CoffeeR\Post\Domain;
 
+/**
+ * ネコのメッセージ
+ */
 class CatMessage implements AnimalMessageInterface
 {
     private string $value;
 
-    const AVAILABLE_WORDS = [
+    public const AVAILABLE_WORDS = [
         'に',
         'ゃ',
         'ん',
@@ -29,7 +32,7 @@ class CatMessage implements AnimalMessageInterface
     public function __construct(string $value)
     {
         // ブランク文字は許容しない
-        if(mb_strlen($value) === 0){
+        if (mb_strlen($value) === 0) {
             throw new \InvalidArgumentException();
         }
 
@@ -39,7 +42,7 @@ class CatMessage implements AnimalMessageInterface
         }
 
         // 空白文字は許容しない
-        if(ctype_space($value) === true){
+        if (ctype_space($value) === true) {
             throw new \InvalidArgumentException();
         }
 
@@ -48,7 +51,6 @@ class CatMessage implements AnimalMessageInterface
 
         // 利用できる文字以外は許容しない
         foreach ($splited_words as $key => $word) {
-            
             if (in_array($word, self::AVAILABLE_WORDS, true) === false) {
                 throw new \InvalidArgumentException();
             }
@@ -57,7 +59,7 @@ class CatMessage implements AnimalMessageInterface
         $this->value = $value;
     }
 
-    public function toString() : string
+    public function toString(): string
     {
         return $this->value;
     }

@@ -2,11 +2,14 @@
 
 namespace App\CoffeeR\Post\Domain;
 
+/**
+ * ゴリラのメッセージ
+ */
 class GoriraMessage implements AnimalMessageInterface
 {
     private string $value;
 
-    const AVAILABLE_WORDS = [
+    public const AVAILABLE_WORDS = [
         'う',
         'ほ',
         'っ',
@@ -29,7 +32,7 @@ class GoriraMessage implements AnimalMessageInterface
     public function __construct(string $value)
     {
         // ブランク文字は許容しない
-        if(mb_strlen($value) === 0){
+        if (mb_strlen($value) === 0) {
             throw new \InvalidArgumentException();
         }
 
@@ -39,7 +42,7 @@ class GoriraMessage implements AnimalMessageInterface
         }
 
         // 空白文字は許容しない
-        if(ctype_space($value) === true){
+        if (ctype_space($value) === true) {
             throw new \InvalidArgumentException();
         }
 
@@ -56,7 +59,7 @@ class GoriraMessage implements AnimalMessageInterface
         $this->value = $value;
     }
 
-    public function toString() : string
+    public function toString(): string
     {
         return $this->value;
     }

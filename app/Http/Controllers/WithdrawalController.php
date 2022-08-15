@@ -9,9 +9,14 @@ use App\Models\TwitterUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-
 class WithdrawalController extends Controller
 {
+    /**
+     * 退会アクション
+     *
+     * @param Request $request
+     * @return void
+     */
     public function withdrawal(Request $request)
     {
         // フォームバリデーション
@@ -37,7 +42,7 @@ class WithdrawalController extends Controller
         // コミット
         DB::commit();
 
+        // 退会後画面にリダイレクト
         return redirect('/after_withdrawal')->with('successMessages', ['退会しました。']);
-
     }
 }

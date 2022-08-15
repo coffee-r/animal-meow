@@ -11,14 +11,20 @@ use Illuminate\Support\Facades\Auth;
 
 class LikeApiController extends Controller
 {
-
+    /**
+     * 投稿にいいねをする
+     *
+     * @param [type] $posts.id
+     * @param Request $request
+     * @return void
+     */
     public function upsert($post_id, Request $request)
     {
         // 投稿を取得
         $post = Post::find($post_id);
 
-        // 投稿が存在しない場合は終了
-        if(empty($post)){
+        // 存在しない投稿にはいいねはできない
+        if (empty($post)) {
             throw new Exception("post_id " . $post_id . " not found.");
         }
 
@@ -27,6 +33,7 @@ class LikeApiController extends Controller
                     ->where('user_id', Auth::id())
                     ->first();
 
+        // トランザクション
         DB::beginTransaction();
 
         // 投稿のtotalいいねを+1
@@ -35,10 +42,10 @@ class LikeApiController extends Controller
 
         // ユーザーのいいねが既にある場合はいいねを+1、
         // ユーザーのいいねが既にある場合は新規作成
-        if($like){
+        if ($like) {
             $like->like_count += 1;
             $like->update();
-        }else{
+        } else {
             $like = new Like();
             $like->user_id = Auth::id();
             $like->post_id = $post_id;
@@ -46,9 +53,10 @@ class LikeApiController extends Controller
             $like->save();
         }
 
+        // コミット
         DB::commit();
 
-        return response($like);
+        // レスポンス
+        return response('', 200);
     }
-
 }
