@@ -10,4 +10,14 @@ class TwitterUser extends Model
     use HasFactory;
 
     protected $primaryKey = 'twitter_id';
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'access_token',
+        'refresh_token',
+    ];
 }
