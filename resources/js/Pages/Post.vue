@@ -2,6 +2,7 @@
 import { ref, reactive, watch } from "vue"
 import { Inertia } from '@inertiajs/inertia'
 import AnimalIME from "@/Components/AnimalIME.vue";
+import CustomButton from "@/Components/CustomButton.vue";
 import LoginUserSpHeader from "@/Components/LoginUserSpHeader.vue";
 import LoginUserPcSideMenu from "@/Components/LoginUserPcSideMenu.vue";
 import ValidationErrors from "@/Components/ValidationErrors.vue";
@@ -84,7 +85,7 @@ const submitPost = function(){
                     </select>
 
                     <!-- 投稿メッセージ -->
-                    <textarea v-model="postForm.message" rows="4" class="block mt-4 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                    <textarea readonly v-model="postForm.message" rows="3" class="resize-none block mt-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
 
                     <!-- 動物言葉の入力IME -->
                     <!-- 動物言葉1文字ごとにボタンを配置し、押下されたら動物言葉をemitする -->
@@ -92,12 +93,12 @@ const submitPost = function(){
 
                     <!-- ツイート投稿オプション -->
                     <div class="flex items-center mt-8">
-                        <input v-model="postForm.withTweet" id="tweet-checkbox" type="checkbox" value="true" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
+                        <input v-model="postForm.withTweet" id="tweet-checkbox" type="checkbox" value="true" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2" >
                         <label for="tweet-checkbox" class="ml-2 font-medium text-gray-900 dark:text-gray-300">Twitterにも投稿する</label>
                     </div>
 
                     <!-- 投稿ボタン -->
-                    <button type="submit" class="mt-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                    <CustomButton type="submit">鳴く</CustomButton>
 
                 </form>
             </div>

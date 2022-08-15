@@ -18,6 +18,9 @@ defineProps({
     <!-- スマホ・タブレットの投稿画面リンク -->
     <FixedPostButton />
 
+    <!-- 投稿やログインの通知 -->
+    <FlashSuccessMessages />
+
     <!-- PCのみ2カラム構成のレイアウトにする -->
     <main class="lg:flex">
 
@@ -26,9 +29,6 @@ defineProps({
 
         <!-- タイムライン -->
         <article class="bg-blue-100 bg-opacity-20 lg:w-full lg:mt-0">
-
-            <!-- 投稿やログインの通知 -->
-            <FlashSuccessMessages />
 
             <PostCard
                 v-for="post in posts"
@@ -41,6 +41,7 @@ defineProps({
                 v-bind:avatar_image_url="post.avatar_image_url"
                 v-bind:post_created_at="post.post_created_at"
             ></PostCard>
+            
         </article>
     </main>
 </template>

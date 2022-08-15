@@ -1,5 +1,6 @@
 <script setup>
 import { Link } from "@inertiajs/inertia-vue3";
+import CustomButton from "@/Components/CustomButton.vue";
 import PostCard from "@/Components/PostCard.vue";
 import FlashSuccessMessages from "@/Components/FlashSuccessMessages.vue";
 
@@ -40,9 +41,7 @@ defineProps({
                 <!-- ログインボタン -->
                 <div class="text-center mt-12">
                     <a href="/login/twitter">
-                        <button class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-3 px-9 rounded-full text-xl lg:py-4 lg:px-12 lg:text-2xl">
-                            Twitterでログイン
-                        </button>
+                        <CustomButton>Twitterでログイン</CustomButton>
                     </a>
                 </div>
             </div>
