@@ -70,9 +70,7 @@ defineProps({
                 <a href="#">プライバシーポリシー</a>
             </li>
             <li class="my-2 grid justify-items-center">
-                <a href="https://twitter.com/plus_marumaru" target="_blank"
-                    >&copy; 2022 coffee-r</a
-                >
+                <a href="https://twitter.com/plus_marumaru" target="_blank">&copy; 2022 coffee-r</a>
             </li>
         </ul>
     </footer>
