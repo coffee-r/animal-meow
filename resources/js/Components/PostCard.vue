@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive } from 'vue';
+import { ref, reactive, onBeforeUnmount } from 'vue';
 import { Inertia } from '@inertiajs/inertia'
 
 const props = defineProps({
@@ -33,6 +33,25 @@ const props = defineProps({
     },
 });
 
+const isOpenDropDownMenu = ref(false);
+
+const openDropDownMenu = function(){
+    isOpenDropDownMenu.value = true;
+    document.addEventListener('click', closeDropDownMenu);
+}
+
+const closeDropDownMenu = function(event){
+    if(event.target.closest('.post-card-drop-down') != null){
+        return;
+    }
+    isOpenDropDownMenu.value = false;
+    document.removeEventListener('click', closeDropDownMenu);
+}
+
+onBeforeUnmount(() => {
+    document.removeEventListener('click', closeDropDownMenu);
+})
+
 const like_total_count_reactive = ref(props.like_total_count);
 
 
@@ -48,9 +67,11 @@ const addLikeCount = function(){
 </script>
 
 <template>
-{{ id }}
+
     <div class="flex m-6 p-2 max-w-full bg-white rounded-lg border border-gray-200 shadow-md">
+
         <img class="w-12 h-12 rounded-full border-4 border-slate-50 object-cover" :src=avatar_image_url />
+        
         <div class="flex flex-col px-1">
             <div>
                 <span class="text-sm font-bold tracking-tight text-gray-900 dark:text-white">{{ user_name }}</span>
@@ -65,19 +86,31 @@ const addLikeCount = function(){
                 <p class="leading-6 text-sm text-gray-400">{{ post_created_at }}</p>
             </div>
         </div>
+        
 
-         <div id="dropdown" class=" z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
-            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
-                <li>
-                    <form @submit.prevent="submitDeletePost">
-                        <button type="submit" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">削除</button>
-                    </form>
-                        
-                </li>
-            </ul>
+        <img @click="openDropDownMenu()" class="post-card-drop-down ml-auto w-4 h-4" src="/images/three_point_leader_menu_icon.svg" />
+        <div class="post-card-drop-down relative">
+            <div class="absolute z-10 top-4 right-0 w-44 bg-white rounded shadow dark:bg-gray-700" v-show="isOpenDropDownMenu">
+                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
+                    <li>
+                        <form @submit.prevent="submitDeletePost">
+                            <button type="submit" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">削除</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <img class="w-4 h-4" src="/images/three_point_leader_menu_icon.svg" />
+        <div class="ml-auto">
+            
+            <div class="fixed">
+                
+            </div>
+        </div>
+
+         
+
+        
        
     </div>
 </template>
