@@ -34,6 +34,36 @@ const props = defineProps({
 });
 
 const isOpenDropDownMenu = ref(false);
+const like_total_count_reactive = ref(props.like_total_count);
+
+const postCreatedAt = function(){
+    const nowDate = new Date();
+    const postDate = new Date(props.post_created_at);
+    const diffSeconds = (nowDate - postDate) / 1000;
+
+    // 投稿時刻が現在時刻の60秒前は秒表示
+    if(diffSeconds < 60){
+        return parseInt(diffSeconds) + '秒';
+    }
+
+    // 投稿時刻が現在時刻の60分前は分表示
+    if(diffSeconds < 3600){
+        return parseInt(diffSeconds / 60) + '分';
+    }
+
+    // 投稿時刻が現在時刻の24時間前は時間表示
+    if(diffSeconds < 86400){
+        return parseInt(diffSeconds / 3600) + '時間';
+    }
+
+    // 投稿時刻が現在時刻の365日前は月日表示 (※うるう年は考慮しない)
+    if(diffSeconds < 31536000){
+        return (postDate.getMonth() +1 ) + '月' + postDate.getDate() + '日';
+    }
+
+    // それら以外は年月日表示
+    return postDate.getFullYear() + '年' + (postDate.getMonth() + 1) + '月' + postDate.getDate() + '日';
+}
 
 const openDropDownMenu = function(){
     isOpenDropDownMenu.value = true;
@@ -47,13 +77,6 @@ const closeDropDownMenu = function(event){
     isOpenDropDownMenu.value = false;
     document.removeEventListener('click', closeDropDownMenu);
 }
-
-onBeforeUnmount(() => {
-    document.removeEventListener('click', closeDropDownMenu);
-})
-
-const like_total_count_reactive = ref(props.like_total_count);
-
 
 const submitDeletePost = function(){
     Inertia.delete('/post/' + props.post_id);
@@ -83,7 +106,7 @@ const addLikeCount = function(){
                     <span class="text-sm">{{ like_total_count_reactive }} いいね</span>
                 </div>
                 <p class="leading-6 text-sm text-gray-400"></p>
-                <p class="leading-6 text-sm text-gray-400">{{ post_created_at }}</p>
+                <p class="leading-6 text-sm text-gray-400">{{ postCreatedAt() }}</p>
             </div>
         </div>
         
@@ -100,17 +123,5 @@ const addLikeCount = function(){
                 </ul>
             </div>
         </div>
-
-        <div class="ml-auto">
-            
-            <div class="fixed">
-                
-            </div>
-        </div>
-
-         
-
-        
-       
     </div>
 </template>
