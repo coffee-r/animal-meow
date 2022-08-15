@@ -1,16 +1,24 @@
 <script setup>
-import { Link } from "@inertiajs/inertia-vue3";
-import CustomHeader from "@/Components/CustomHeader.vue";
+import OneColumnPageHeader from "@/Components/OneColumnPageHeader.vue";
+import OneColumnPageFooter from "@/Components/OneColumnPageFooter.vue";
 </script>
 
 <template>
-    <div class="bg-blue-100 bg-opacity-20">
-        <CustomHeader />
 
+    <!-- 背景色指定 -->
+    <div class="bg-blue-100 bg-opacity-20">
+
+        <!-- ヘッダー -->
+        <OneColumnPageHeader />
+
+        <!-- プライバシーポリシー 本文 -->
         <article class="prose prose-sm sm:prose-base lg:prose-base max-w-5xl mx-auto bg-white border border-gray-200 rounded-xl shadow-md px-4 py-8 sm:px-8">
             
             <h1 class="text-center">プライバシーポリシー</h1>
-            <p>この文章は本サービスにおける個人情報の保護およびその適切な取り扱いについての方針を示したものです。</p>
+
+            <p>
+                この文章は本サービスにおける個人情報の保護およびその適切な取り扱いについての方針を示したものです。
+            </p>
 
             <h2>外部SNSアカウント連携による情報の取得</h2>
             <p>
@@ -42,13 +50,8 @@ import CustomHeader from "@/Components/CustomHeader.vue";
 
         </article>
 
-        <footer>
-            <ul class="py-4 flex flex-col gap-y-4 lg:py-8 lg:flex-row lg:justify-center lg:gap-x-24">
-                <Link href="/terms"><li class="grid justify-items-center hover:opacity-50">利用規約</li></Link>
-                <Link href="/privacy"><li class="grid justify-items-center hover:opacity-50">プライバシーポリシー</li></Link>
-                <a href="https://twitter.com/plus_marumaru" target="_blank"><li class="grid justify-items-center hover:opacity-50">&copy; 2022 coffee-r</li></a>
-            </ul>
-        </footer>
+        <!-- フッター -->
+        <OneColumnPageFooter />
 
     </div>
 
