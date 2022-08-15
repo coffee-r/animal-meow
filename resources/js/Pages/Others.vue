@@ -27,6 +27,7 @@
     <!-- スマホ・タブレットの投稿画面リンク -->
     <FixedPostButton />
 
+    <!-- PCのみ2カラム構成のレイアウトにする -->
     <main class="lg:flex">
 
         <!-- PCのサイドメニュー -->
@@ -38,6 +39,7 @@
             <!-- バリデーションエラー表示 -->
             <ValidationErrors />
 
+            <!-- 利用した技術や素材サイトなどの紹介 -->
             <div class="mx-6 my-4 py-8 px-4 max-w-full bg-white rounded-lg border border-gray-200 shadow-md">
                 <h2 class="font-bold text-2xl lg:text-4xl">開発のために主に利用や参考にさせて頂いたもの</h2>
         
@@ -59,7 +61,8 @@
         
                 その他、世に広まっているたくさんの技術のおかげで本サービスを開発することが出来ています。
             </div>
-        
+
+            <!-- ログアウトフォーム -->
             <div class="mx-6 my-4 py-8 px-4 max-w-full bg-white rounded-lg border border-gray-200 shadow-md">
                 <h2 class="font-bold text-2xl lg:text-4xl">ログアウト</h2>
         
@@ -67,7 +70,8 @@
                     <button type="submit" class="text-2xl bg-gray-900 hover:bg-gray-500 text-white font-bold py-4 px-12 rounded-full">ログアウトする</button>
                 </form>
             </div>
-        
+
+            <!-- 退会フォーム -->
             <div class="mx-6 my-4 py-8 px-4 max-w-full bg-white rounded-lg border border-gray-200 shadow-md">
                 <h2 class="font-bold text-2xl lg:text-4xl">退会</h2>
         
@@ -82,8 +86,8 @@
                     <input type="text" v-model="withdrawalForm.confirmText" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"  placeholder="「退会する」と入力してボタンを押す">
                     <button type="submit" class="text-2xl bg-red-600 hover:bg-red-400 text-white font-bold py-4 px-12 rounded-full">退会する</button>
                 </form>
-        
             </div>
+            
         </article>
     </main>
 </template>

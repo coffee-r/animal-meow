@@ -1,15 +1,14 @@
 <script setup>
-    import { Link } from "@inertiajs/inertia-vue3";
-    import PostCard from "@/Components/PostCard.vue";
-    import LoginUserSpHeader from "@/Components/LoginUserSpHeader.vue";
-    import FixedPostButton from "@/Components/FixedPostButton.vue";
-    import LoginUserPcSideMenu from "@/Components/LoginUserPcSideMenu.vue";
-    import FlashSuccessMessages from "@/Components/FlashSuccessMessages.vue";
+import { Link } from "@inertiajs/inertia-vue3";
+import PostCard from "@/Components/PostCard.vue";
+import LoginUserSpHeader from "@/Components/LoginUserSpHeader.vue";
+import FixedPostButton from "@/Components/FixedPostButton.vue";
+import LoginUserPcSideMenu from "@/Components/LoginUserPcSideMenu.vue";
+import FlashSuccessMessages from "@/Components/FlashSuccessMessages.vue";
 
-
-    defineProps({
-        posts: Array,
-    });
+defineProps({
+    posts: Array,
+});
 </script>
 
 <template>
@@ -18,7 +17,8 @@
 
     <!-- スマホ・タブレットの投稿画面リンク -->
     <FixedPostButton />
-   
+
+    <!-- PCのみ2カラム構成のレイアウトにする -->
     <main class="lg:flex">
 
         <!-- PCのサイドメニュー -->
