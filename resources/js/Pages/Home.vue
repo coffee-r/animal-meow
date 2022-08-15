@@ -23,12 +23,11 @@
 
         <!-- PCのサイドメニュー -->
         <LoginUserPcSideMenu />
-        
 
         <!-- タイムライン -->
         <article class="bg-blue-100 bg-opacity-20 lg:w-full lg:mt-0">
 
-            <!-- 投稿の通知 -->
+            <!-- 投稿やログインの通知 -->
             <FlashSuccessMessages />
 
             <PostCard
