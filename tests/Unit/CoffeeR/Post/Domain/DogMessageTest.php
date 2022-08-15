@@ -20,17 +20,17 @@ class DogMessageTest extends TestCase
     public function test_message_length_limit_within()
     {
         $message = '';
-        for($i=0;$i<120;$i++){
+        for ($i=0;$i<120;$i++) {
             $message .= 'わ';
         }
-        
+
         $dogMessage = new DogMessage($message);
     }
 
     public function test_message_length_limit_over()
     {
         $message = '';
-        for($i=0;$i<121;$i++){
+        for ($i=0;$i<121;$i++) {
             $message .= 'わ';
         }
 

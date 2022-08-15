@@ -20,17 +20,17 @@ class CatMessageTest extends TestCase
     public function test_message_length_limit_within()
     {
         $message = '';
-        for($i=0;$i<120;$i++){
+        for ($i=0;$i<120;$i++) {
             $message .= 'に';
         }
-        
+
         $catMessage = new CatMessage($message);
     }
 
     public function test_message_length_limit_over()
     {
         $message = '';
-        for($i=0;$i<121;$i++){
+        for ($i=0;$i<121;$i++) {
             $message .= 'に';
         }
 
