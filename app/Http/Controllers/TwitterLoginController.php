@@ -93,6 +93,6 @@ class TwitterLoginController extends Controller
         DB::commit();
 
         // ホーム画面にリダイレクト
-        return redirect('/home')->with('flash_success_messages', ['ログインしました。']);
+        return redirect('/home')->with('successMessages', ['ログインしました。']);
     }
 }

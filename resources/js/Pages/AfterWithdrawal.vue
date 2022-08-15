@@ -1,15 +1,12 @@
 <script setup>
 import { Link } from '@inertiajs/inertia-vue3';
 import CustomHeader from '@/Components/CustomHeader.vue';
+import FlashSuccessMessages from "@/Components/FlashSuccessMessages.vue";
 </script>
 
 <template>
     <!-- 退会の通知 -->
-    <div v-if="$page.props.flash.successMessages">
-        <div v-for="message in $page.props.flash.successMessages" :key="message" class="p-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
-            <span class="font-bold">{{ message }}</span> 
-        </div>
-    </div>
+    <FlashSuccessMessages />
 
     <div class="bg-blue-100 bg-opacity-20">
     <CustomHeader />

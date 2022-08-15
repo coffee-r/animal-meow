@@ -4,6 +4,7 @@
     import LoginUserSpHeader from "@/Components/LoginUserSpHeader.vue";
     import FixedPostButton from "@/Components/FixedPostButton.vue";
     import LoginUserPcSideMenu from "@/Components/LoginUserPcSideMenu.vue";
+    import FlashSuccessMessages from "@/Components/FlashSuccessMessages.vue";
 
 
     defineProps({
@@ -25,16 +26,10 @@
         
 
         <!-- タイムライン -->
-        <article class="bg-blue-100 bg-opacity-20 py-1 lg:w-full lg:mt-0">
+        <article class="bg-blue-100 bg-opacity-20 lg:w-full lg:mt-0">
 
             <!-- 投稿の通知 -->
-            <div v-if="$page.props.flash.successMessages">
-                <ul class="list-disc list-inside p-4 text-sm text-green-700 bg-green-100 dark:bg-green-200 dark:text-green-800" role="alert">
-                    <li v-for="message in $page.props.flash.successMessages" :key="message" >
-                        <span v-html="message" class="font-bold"></span> 
-                    </li>
-                </ul>
-            </div>
+            <FlashSuccessMessages />
 
             <PostCard
                 v-for="post in posts"

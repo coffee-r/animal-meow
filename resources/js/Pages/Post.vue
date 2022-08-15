@@ -53,7 +53,6 @@
 
 <template>
 
-
     <!-- スマホ・タブレットのヘッダーメニュー -->
     <LoginUserSpHeader />
    

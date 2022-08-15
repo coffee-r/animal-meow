@@ -32,7 +32,7 @@
         <LoginUserPcSideMenu />
 
         <!-- その他 -->
-        <article class="bg-blue-100 bg-opacity-20 py-1 lg:w-full lg:mt-0">
+        <article class="bg-blue-100 bg-opacity-20 lg:w-full lg:mt-0">
             <div class="mx-6 my-4 py-8 px-4 max-w-full bg-white rounded-lg border border-gray-200 shadow-md">
                 <h2 class="font-bold text-2xl lg:text-4xl">開発のために主に利用や参考にさせて頂いたもの</h2>
         

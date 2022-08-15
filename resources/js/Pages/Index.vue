@@ -1,6 +1,7 @@
 <script setup>
 import { Link } from "@inertiajs/inertia-vue3";
 import PostCard from "@/Components/PostCard.vue";
+import FlashSuccessMessages from "@/Components/FlashSuccessMessages.vue";
 
 defineProps({
     posts: Array,
@@ -9,11 +10,7 @@ defineProps({
 
 <template>
     <!-- ログアウトの通知 -->
-    <div v-if="$page.props.flash.successMessages">
-        <div v-for="message in $page.props.flash.successMessages" :key="message" class="p-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
-            <span class="font-bold">{{ message }}</span> 
-        </div>
-    </div>
+    <FlashSuccessMessages />
 
     <main class="lg:flex">
         <section class="lg:flex lg:flex-col lg:w-full lg:sticky lg:h-screen lg:top-0">
@@ -33,7 +30,7 @@ defineProps({
 
                 <div class="text-center mt-12">
                     <a href="/login/twitter">
-                        <button class="text-2xl bg-gray-900 hover:bg-gray-700 text-white font-bold py-4 px-12 rounded-full">
+                        <button class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-3 px-9 rounded-full text-xl lg:py-4 lg:px-12 lg:text-2xl">
                             Twitterでログイン
                         </button>
                     </a>
