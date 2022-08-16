@@ -71,7 +71,7 @@ const submitPost = function(){
         <LoginUserPcSideMenu />
 
         <!-- 投稿フォーム -->
-        <article class="bg-blue-100 bg-opacity-20 lg:w-full lg:h-auto lg:mt-0">
+        <article class="lg:w-full lg:h-auto lg:mt-0">
             
             <!-- 投稿フォーム -->
             <div class="flex bg-white rounded-xl border border-gray-200 shadow-md mx-2 mb-4 px-4 py-4 lg:mx-6 lg:mt-3 lg:mb-6 lg:px-8 lg:py-8">

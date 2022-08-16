@@ -24,7 +24,7 @@
         @vite('resources/js/app.js')
         @inertiaHead
     </head>
-    <body class="font-sans antialiased overflow-y-scroll">
+    <body class="font-sans bg-blue-100 bg-opacity-20 antialiased overflow-y-scroll">
         @inertia
     </body>
 </html>

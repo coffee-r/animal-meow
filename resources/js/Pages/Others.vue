@@ -42,7 +42,7 @@ const submitWithdrawal = function(){
         <LoginUserPcSideMenu />
 
         <!-- その他 -->
-        <article class="bg-blue-100 bg-opacity-20 lg:w-full lg:h-auto lg:mt-0">
+        <article class="lg:w-full lg:h-auto lg:mt-0">
 
             <!-- 背景色表示用padding -->
             <div class="py-4 lg:px-0">

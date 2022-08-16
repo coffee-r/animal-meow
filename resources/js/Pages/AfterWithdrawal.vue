@@ -8,25 +8,20 @@ import FlashSuccessMessages from "@/Components/FlashSuccessMessages.vue";
 
     <!-- 退会の通知 -->
     <FlashSuccessMessages />
-
-    <!-- 背景色指定 -->
-    <div class="bg-blue-100 bg-opacity-20">
         
-        <!-- ヘッダー -->
-        <OneColumnPageHeader />
+    <!-- ヘッダー -->
+    <OneColumnPageHeader />
 
-        <article class="prose prose-sm sm:prose-base lg:prose-base max-w-5xl mx-auto bg-white border border-gray-200 rounded-xl shadow-md px-4 py-8 sm:px-8">
+    <article class="prose prose-sm sm:prose-base lg:prose-base max-w-5xl mx-auto bg-white border border-gray-200 rounded-xl shadow-md px-4 py-8 sm:px-8">
 
-            <h1 class="text-center">Thank you!</h1>
-            <p>
-                この度はあにまるにゃ〜んをご利用頂き、ありがとうございました。僅かでもお役に立てたのであれば幸いです。また機会がありましたらご利用ください。
-            </p>
+        <h1 class="text-center">Thank you!</h1>
+        <p>
+            この度はあにまるにゃ〜んをご利用頂き、ありがとうございました。僅かでもお役に立てたのであれば幸いです。また機会がありましたらご利用ください。
+        </p>
 
-        </article>
+    </article>
 
-        <!-- フッター -->
-        <OneColumnPageFooter />
+    <!-- フッター -->
+    <OneColumnPageFooter />
         
-    </div>
-
 </template>

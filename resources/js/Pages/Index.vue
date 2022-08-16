@@ -17,7 +17,7 @@ defineProps({
     <main class="lg:flex">
 
         <!-- サイト紹介セクション -->
-        <section class="lg:flex lg:flex-col lg:w-full lg:sticky lg:h-screen lg:top-0">
+        <section class="bg-white lg:flex lg:flex-col lg:w-full lg:sticky lg:h-screen lg:top-0">
 
             <!-- ヘッダー -->
             <header class="flex lg:flex-none">
@@ -39,7 +39,7 @@ defineProps({
                 </p>
 
                 <!-- ログインボタン -->
-                <div class="text-center my-12">
+                <div class="text-center py-12">
                     <a :href="route('login.twitter')">
                         <CustomButton>Twitterでログイン</CustomButton>
                     </a>
@@ -58,7 +58,7 @@ defineProps({
         </section>
 
         <!-- タイムライン -->
-        <article class="bg-blue-100 bg-opacity-20 lg:w-full lg:h-auto lg:mt-0">
+        <article class="lg:w-full lg:h-auto lg:mt-0">
 
             <!-- 投稿がない時のメッセージ -->
             <PostNoneMessage v-if="posts.length == 0" />
@@ -86,7 +86,7 @@ defineProps({
     </main>
 
     <!-- SP用フッター -->
-    <footer class="lg:hidden">
+    <footer class="bg-white lg:hidden">
        <ul class="py-4 flex flex-col gap-y-4">
             <Link class="hover:text-gray-500" :href="route('terms')"><li class="grid justify-items-center">利用規約</li></Link>
             <Link class="hover:text-gray-500" :href="route('privacy')"><li class="grid justify-items-center">プライバシーポリシー</li></Link>

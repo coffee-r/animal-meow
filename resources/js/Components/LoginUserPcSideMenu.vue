@@ -16,7 +16,7 @@ const isSelectedUrlPath = function(path){
 
 <!-- PCのサイドメニュー -->
 <template>
-    <aside class="hidden lg:flex lg:flex-col lg:block lg:sticky lg:h-screen lg:top-0 lg:w-1/2">
+    <aside class="hidden bg-white lg:flex lg:flex-col lg:block lg:sticky lg:h-screen lg:top-0 lg:w-1/2">
         <header class="flex lg:flex-none">
             <Link class="flex-none hover:opacity-50" :href="route('home')"><img class="mx-6 my-6 w-10" src="/images/logo.svg"></Link>
         </header>
