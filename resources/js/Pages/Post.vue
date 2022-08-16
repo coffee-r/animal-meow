@@ -8,7 +8,7 @@ import LoginUserPcSideMenu from "@/Components/LoginUserPcSideMenu.vue";
 import ValidationErrors from "@/Components/ValidationErrors.vue";
 
 const props = defineProps({
-    animals: Array,
+    animals: Object,
 });
 
 // 投稿メッセージとして入力できる動物言葉
@@ -90,7 +90,7 @@ const submitPost = function(){
 
                     <!-- 動物言葉の入力IME -->
                     <!-- 動物言葉1文字ごとにボタンを配置し、押下されたら動物言葉をemitする -->
-                    <AnimalIME class="mt-2" v-bind:words=currentAnimalAvailableWords @removeWordNotification='removeOneWordToMessage' @addWordNotification='addWordToMessage' />
+                    <AnimalIME class="mt-2" v-bind:words="currentAnimalAvailableWords" @removeWordNotification="removeOneWordToMessage" @addWordNotification="addWordToMessage" />
 
                     <!-- ツイート投稿オプション -->
                     <div class="flex items-center mt-8">

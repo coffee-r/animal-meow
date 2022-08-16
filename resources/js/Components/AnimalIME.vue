@@ -1,4 +1,5 @@
 <script setup>
+
 const props = defineProps({
     words: Array
 });
@@ -15,8 +16,16 @@ const addWord = function(word){
 const removeWord = function(){
     emits("removeWordNotification");
 }
-
 </script>
+
+<script>
+import { defineComponent } from "@vue/runtime-core";
+export default defineComponent({
+    inheritAttrs: false,
+});
+</script>
+
+
 
 <!-- 動物言葉のIME -->
 <template>
