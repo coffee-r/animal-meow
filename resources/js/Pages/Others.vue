@@ -18,12 +18,12 @@ const withdrawalForm = useForm({
 
 // ログアウト
 const submitLogout = function(){
-    logoutForm.post('/logout');
+    logoutForm.post(route('logout'));
 }
 
 // 退会
 const submitWithdrawal = function(){
-    withdrawalForm.post('/withdrawal', withdrawalForm);
+    withdrawalForm.post(route('withdrawal'), withdrawalForm);
 }
 
 </script>

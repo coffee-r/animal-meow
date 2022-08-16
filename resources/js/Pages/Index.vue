@@ -21,7 +21,7 @@ defineProps({
 
             <!-- ヘッダー -->
             <header class="flex lg:flex-none">
-                <Link class="flex-none hover:opacity-50" href="/"><img class="w-8 my-4 mx-4 sm:w-9 sm:my-5 sm:mx-5 lg:w-10 lg:my-6 lg:mx-6" src="/images/logo.svg"></Link>
+                <Link class="flex-none hover:opacity-50" :href="route('index')"><img class="w-8 my-4 mx-4 sm:w-9 sm:my-5 sm:mx-5 lg:w-10 lg:my-6 lg:mx-6" src="/images/logo.svg"></Link>
             </header>
 
             <div class="lg:flex-1">
@@ -40,7 +40,7 @@ defineProps({
 
                 <!-- ログインボタン -->
                 <div class="text-center my-12">
-                    <a href="/login/twitter">
+                    <a :href="route('login.twitter')">
                         <CustomButton>Twitterでログイン</CustomButton>
                     </a>
                 </div>
@@ -49,8 +49,8 @@ defineProps({
             <!-- PC用フッター -->
             <footer class="hidden my-10 lg:block lg:flex-none">
                 <ul class="px-20 flex justify-around">
-                    <Link class="hover:text-gray-500" href="/terms"><li>利用規約</li></Link>
-                    <Link class="hover:text-gray-500" href="/privacy"><li>プライバシーポリシー</li></Link>
+                    <Link class="hover:text-gray-500" :href="route('terms')"><li>利用規約</li></Link>
+                    <Link class="hover:text-gray-500" :href="route('privacy')"><li>プライバシーポリシー</li></Link>
                     <a class="hover:text-gray-500" href="https://twitter.com/plus_marumaru" target="_blank"><li>&copy; 2022 coffee-r</li></a>
                 </ul>
             </footer>
@@ -88,8 +88,8 @@ defineProps({
     <!-- SP用フッター -->
     <footer class="lg:hidden">
        <ul class="py-4 flex flex-col gap-y-4">
-            <Link class="hover:text-gray-500" href="/terms"><li class="grid justify-items-center">利用規約</li></Link>
-            <Link class="hover:text-gray-500" href="/privacy"><li class="grid justify-items-center">プライバシーポリシー</li></Link>
+            <Link class="hover:text-gray-500" :href="route('terms')"><li class="grid justify-items-center">利用規約</li></Link>
+            <Link class="hover:text-gray-500" :href="route('privacy')"><li class="grid justify-items-center">プライバシーポリシー</li></Link>
             <a class="hover:text-gray-500" href="https://twitter.com/plus_marumaru" target="_blank"><li class="grid justify-items-center">&copy; 2022 coffee-r</li></a>
         </ul>
     </footer>

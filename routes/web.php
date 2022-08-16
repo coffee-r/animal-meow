@@ -21,7 +21,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/', 'App\Http\Controllers\IndexController@index')->name('index');
 
     // Twitterでログイン
-    Route::get('/login/twitter', 'App\Http\Controllers\TwitterLoginController@redirectToProvider')->name('twitter.login');
+    Route::get('/login/twitter', 'App\Http\Controllers\TwitterLoginController@redirectToProvider')->name('login.twitter');
 
     // Twitterログイン時のコールバック
     Route::get('/login/twitter/callback', 'App\Http\Controllers\TwitterLoginController@handleProviderCallback');

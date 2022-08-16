@@ -52,7 +52,7 @@ const removeOneWordToMessage = function(){
 
 // 投稿フォームを送信する
 const submitPost = function(){
-    postForm.post('/post');
+    postForm.post(route('post.store'));
 }
 </script>
 
