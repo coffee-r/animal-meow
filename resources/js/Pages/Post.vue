@@ -59,6 +59,9 @@ const submitPost = function(){
 
     <!-- スマホ・タブレットのヘッダーメニュー -->
     <LoginUserSpHeader />
+
+    <!-- バリデーションエラー表示 -->
+    <ValidationErrors />
     
     <!-- PCのみ2カラム構成のレイアウトにする -->
     <main class="lg:flex">
@@ -68,10 +71,7 @@ const submitPost = function(){
 
         <!-- 投稿フォーム -->
         <article class="bg-blue-100 bg-opacity-20 py-1 lg:w-full lg:mt-0">
-
-            <!-- バリデーションエラー表示 -->
-            <ValidationErrors />
-
+            
             <!-- 投稿フォーム -->
             <div class="flex mx-6 my-4 p-2 max-w-full bg-white rounded-lg border border-gray-200 shadow-md">
                 <form @submit.prevent="submitPost" class="w-full m-4">

@@ -22,6 +22,9 @@ class WithdrawalController extends Controller
         // フォームバリデーション
         $validated = $request->validate([
             'confirmText' => 'required|regex:/^退会する$/',
+        ],[
+            'confirmText.required' => '退会確認用メッセージを入力してください',
+            'confirmText.regex' => '退会確認用メッセージを正しく入力してください',
         ]);
 
         // トランザクション
