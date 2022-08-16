@@ -1,23 +1,31 @@
 <script setup>
 import { reactive } from "vue"
-import { Inertia } from '@inertiajs/inertia'
+import { useForm } from '@inertiajs/inertia-vue3'
 import CustomButton from "@/Components/CustomButton.vue";
 import LoginUserSpHeader from "@/Components/LoginUserSpHeader.vue";
 import FixedPostButton from "@/Components/FixedPostButton.vue";
 import LoginUserPcSideMenu from "@/Components/LoginUserPcSideMenu.vue";
 import ValidationErrors from "@/Components/ValidationErrors.vue";
 
-const submitLogout = function(){
-    Inertia.post('/logout');
-}
 
-const withdrawalForm = reactive({
+// ログアウトフォーム
+const logoutForm = useForm();
+
+// 退会フォーム
+const withdrawalForm = useForm({
     confirmText: null,
 })
 
-const submitWithdrawal = function(){
-    Inertia.post('/withdrawal', withdrawalForm);
+// ログアウト
+const submitLogout = function(){
+    logoutForm.post('/logout');
 }
+
+// 退会
+const submitWithdrawal = function(){
+    withdrawalForm.post('/withdrawal', withdrawalForm);
+}
+
 </script>
 
 <template>
@@ -81,7 +89,7 @@ const submitWithdrawal = function(){
                     <h2 class="font-bold text-2xl lg:text-3xl">ログアウト</h2>
             
                     <form @submit.prevent="submitLogout" class="text-center m-4 lg:text-left">
-                        <CustomButton type="submit">ログアウトする</CustomButton>
+                        <CustomButton type="submit" v-bind:disabled="logoutForm.processing">ログアウトする</CustomButton>
                     </form>
                 </div>
 
@@ -98,7 +106,7 @@ const submitWithdrawal = function(){
             
                     <form @submit.prevent="submitWithdrawal" class="text-center m-4 lg:text-left">
                         <input type="text" v-model="withdrawalForm.confirmText" class="appearance-none border w-full py-2 px-4 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"  placeholder="「退会する」と入力してボタンを押す">
-                        <CustomButton class="mt-6" type="submit" color='bg-red-600' hoverColor="hover:bg-red-400">退会する</CustomButton>
+                        <CustomButton class="mt-6" type="submit"  v-bind:disabled="withdrawalForm.processing" color='bg-red-600' hoverColor="hover:bg-red-400">退会する</CustomButton>
                     </form>
                 </div>
 

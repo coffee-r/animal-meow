@@ -4,6 +4,10 @@ const props = defineProps({
         type: String,
         default: 'button',
     },
+    disabled: {
+        type: Boolean,
+        default: false,
+    },
     color: {
         type: String,
         default: 'bg-gray-900'
@@ -19,7 +23,7 @@ const buttonClass = props.color + " " + props.hoverColor + " text-white font-bol
 </script>
 
 <template>
-    <button :type="type" v-bind:class="buttonClass">
+    <button :type="type" :disabled="disabled" :class="buttonClass">
         <slot />
     </button>
 </template>

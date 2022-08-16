@@ -1,6 +1,6 @@
 <script setup>
 import { ref, reactive, watch } from "vue"
-import { Inertia } from '@inertiajs/inertia'
+import { useForm } from '@inertiajs/inertia-vue3'
 import AnimalIME from "@/Components/AnimalIME.vue";
 import CustomButton from "@/Components/CustomButton.vue";
 import LoginUserSpHeader from "@/Components/LoginUserSpHeader.vue";
@@ -15,12 +15,13 @@ const props = defineProps({
 // バインドさせておくことで、動物IMEの中の文字を入れ替えられるようにしたい
 const currentAnimalAvailableWords = ref([]);
 
-// 投稿フォームのパラメタ
-const postForm = reactive({
+// 投稿フォーム
+const postForm = useForm({
     animalTypeId: '',
     message: '',
     withTweet: null,
 });
+
 
 // 動物を選択したときに、動物IMEの中の文字を入れ替える
 watch(
@@ -51,7 +52,7 @@ const removeOneWordToMessage = function(){
 
 // 投稿フォームを送信する
 const submitPost = function(){
-    Inertia.post('/post', postForm);
+    postForm.post('/post');
 }
 </script>
 
@@ -98,7 +99,7 @@ const submitPost = function(){
                     </div>
 
                     <!-- 投稿ボタン -->
-                    <CustomButton type="submit">鳴く</CustomButton>
+                    <CustomButton type="submit" v-bind:disabled="postForm.processing">鳴く</CustomButton>
 
                 </form>
             </div>
