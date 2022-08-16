@@ -112,36 +112,40 @@ const addLikeCount = function(){
 </script>
 
 <template>
-
+    <!-- アバター画像 | その他 で横に分割 -->
     <div class="flex bg-white rounded-xl border border-gray-200 shadow-md mx-2 my-1 p-2">
 
+        <!-- アバター画像 -->
         <img class="w-12 h-12 rounded-full border-4 border-slate-50 object-cover" :src=avatar_image_url />
         
-        <div class="flex flex-col px-1">
-            <div>
+        <!-- ユーザー名・3点リーダーメニュー | 投稿文章・いいね数・投稿時間 で縦に分割 -->
+        <div class="flex flex-col px-1 w-full">
+
+            <!-- ユーザー名 | 3点リーダーメニュー で横に分割 -->
+            <div class="flex">
                 <span class="text-sm font-bold tracking-tight text-gray-900 dark:text-white">{{ user_name }}</span>
-            </div>
-            <p class="text-sm text-gray-700">{{ message }}</p>
-            <div class="flex justify-between">
-                <div>
-                    <img @click="addLikeCount" class="inline w-4 h-4" src="/images/like_icon.svg" />
-                    <span class="text-sm">{{ like_total_count_reactive }}</span>
+                <img v-if="isSamePostUserAuthUser()" @click="openDropDownMenu()" class="post-card-drop-down ml-auto w-4 h-4" src="/images/three_point_leader_menu_icon.svg" />
+                <div v-if="isSamePostUserAuthUser()" class="post-card-drop-down relative">
+                    <div class="absolute z-10 top-4 right-0 w-44 bg-white rounded shadow dark:bg-gray-700" v-show="isOpenDropDownMenu">
+                        <ul class="text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
+                            <li class="text-red-600 hover:bg-gray-100">
+                                <form @submit.prevent="submitDeletePost">
+                                    <button type="submit" class="w-full text-left py-2 px-4">削除</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <p class="leading-6 text-sm text-gray-400"></p>
-                <p class="leading-6 text-sm text-gray-400">{{ postCreatedAt() }}</p>
             </div>
-        </div>
-        
-        <img v-if="isSamePostUserAuthUser()" @click="openDropDownMenu()" class="post-card-drop-down ml-auto w-4 h-4" src="/images/three_point_leader_menu_icon.svg" />
-        <div v-if="isSamePostUserAuthUser()" class="post-card-drop-down relative">
-            <div class="absolute z-10 top-4 right-0 w-44 bg-white rounded shadow dark:bg-gray-700" v-show="isOpenDropDownMenu">
-                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
-                    <li>
-                        <form @submit.prevent="submitDeletePost">
-                            <button type="submit" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">削除</button>
-                        </form>
-                    </li>
-                </ul>
+
+            <!-- 投稿文章 -->
+            <p class="text-sm text-gray-700">{{ message }}</p>
+
+            <!-- いいね数 -->
+            <div class="flex justify-start">
+                <img @click="addLikeCount" class="w-5 h-5" src="/images/like_icon.svg" />
+                <div class="ml-1 text-sm">{{ like_total_count_reactive }}</div>
+                <p class="ml-auto text-sm text-gray-400">{{ postCreatedAt() }}</p>
             </div>
         </div>
     </div>
