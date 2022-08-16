@@ -91,7 +91,7 @@ const addLikeCount = function(){
 
 <template>
 
-    <div class="flex m-6 p-2 max-w-full bg-white rounded-lg border border-gray-200 shadow-md">
+    <div class="flex bg-white rounded-xl border border-gray-200 shadow-md mx-2 my-1 p-2">
 
         <img class="w-12 h-12 rounded-full border-4 border-slate-50 object-cover" :src=avatar_image_url />
         
@@ -103,7 +103,7 @@ const addLikeCount = function(){
             <div class="flex justify-between">
                 <div>
                     <img @click="addLikeCount" class="inline w-4 h-4" src="/images/like_icon.svg" />
-                    <span class="text-sm">{{ like_total_count_reactive }} いいね</span>
+                    <span class="text-sm">{{ like_total_count_reactive }}</span>
                 </div>
                 <p class="leading-6 text-sm text-gray-400"></p>
                 <p class="leading-6 text-sm text-gray-400">{{ postCreatedAt() }}</p>

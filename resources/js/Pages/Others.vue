@@ -34,71 +34,74 @@ const submitWithdrawal = function(){
         <LoginUserPcSideMenu />
 
         <!-- その他 -->
-        <article class="py-1 bg-blue-100 bg-opacity-20 lg:w-full lg:mt-0">
-            
-            <!-- 利用した技術や素材サイトなどの紹介 -->
-            <!-- Thanks! -->
-            <div class="bg-white rounded-xl border border-gray-200 shadow-md mx-2 my-2 px-4 py-4 lg:mx-6 lg:my-6 lg:px-8 lg:py-8">
-                <h2 class="font-bold text-2xl lg:text-3xl">開発のために主に利用や参考にさせて頂いたもの</h2>
-        
-                <ul class="list-disc list-outside pl-5 mt-4">
-                    <li>Twitter</li>
-                    <li>Heroku</li>
-                    <li>Docker</li>
-                    <li>Laravel</li>
-                    <li>PostgreSQL</li>
-                    <li>Vite</li>
-                    <li>Vue.js</li>
-                    <li>Inertia.js</li>
-                    <li>Tailwind CSS</li>
-                    <li>Visual Studio Code</li>
-                    <li>Figma</li>
-                    <li>Draw.io</li>
-                    <li>icooon-mono.com</li>
-                    <li>kiyaku.jp</li>
-                </ul>
-        
-                <p class="mt-4">
-                    その他、世に広まっているたくさんの技術のおかげで本サービスを開発することが出来ています。
-                </p>
-        
+        <article class="bg-blue-100 bg-opacity-20 h-screen lg:w-full lg:h-auto lg:mt-0">
+
+            <!-- 背景色表示用padding -->
+            <div class="py-4 lg:px-0">
+
+                <!-- ご意見など -->
+                <div class="bg-white rounded-xl border border-gray-200 shadow-md mx-2 mb-4 px-4 py-4 lg:mx-6 lg:mt-3 lg:mb-6 lg:px-8 lg:py-8">
+                    <h2 class="font-bold text-2xl lg:text-3xl">ご要望や不具合報告など</h2>
+
+                    <p class="mt-4">
+                        <a class="font-bold underline" href="https://twitter.com/intent/tweet?hashtags=あにまるにゃ〜ん要望" target="_blank">#あにまるにゃ〜ん要望</a> のタグをつけてツイートして頂けますと、当サイトの開発者の気まぐれで対応するかもしれません。<br/>
+                        サイトが全く閲覧出来ないなどの致命的な問題が発生している際は、@plus_marumaru 宛てまでDM頂けますと幸いです。
+                    </p>
+                </div>
                 
-            </div>
+                <!-- 利用した技術や素材サイトなどの紹介 -->
+                <!-- Thanks! -->
+                <div class="bg-white rounded-xl border border-gray-200 shadow-md mx-2 my-4 px-4 py-4 lg:mx-6 lg:my-6 lg:px-8 lg:py-8">
+                    <h2 class="font-bold text-2xl lg:text-3xl">開発のために主に利用や参考にさせて頂いたもの</h2>
+            
+                    <ul class="list-disc list-outside pl-5 mt-4">
+                        <li>Twitter</li>
+                        <li>Heroku</li>
+                        <li>Docker</li>
+                        <li>Laravel</li>
+                        <li>PostgreSQL</li>
+                        <li>Vite</li>
+                        <li>Vue.js</li>
+                        <li>Inertia.js</li>
+                        <li>Tailwind CSS</li>
+                        <li>Visual Studio Code</li>
+                        <li>Figma</li>
+                        <li>Draw.io</li>
+                        <li>icooon-mono.com</li>
+                        <li>kiyaku.jp</li>
+                    </ul>
+            
+                    <p class="mt-4">
+                        その他、世に広まっているたくさんの技術のおかげで本サービスを開発することが出来ています。
+                    </p>
+                </div>
 
-            <!-- ご意見など -->
-            <div class="bg-white rounded-xl border border-gray-200 shadow-md mx-2 my-2 px-4 py-4 lg:mx-6 lg:my-6 lg:px-8 lg:py-8">
-                <h2 class="font-bold text-2xl lg:text-3xl">ご要望や不具合報告など</h2>
+                <!-- ログアウトフォーム -->
+                <div class="bg-white rounded-xl border border-gray-200 shadow-md mx-2 my-4 px-4 py-4 lg:mx-6 lg:my-6 lg:px-8 lg:py-8">
+                    <h2 class="font-bold text-2xl lg:text-3xl">ログアウト</h2>
+            
+                    <form @submit.prevent="submitLogout" class="text-center m-4 lg:text-left">
+                        <CustomButton type="submit">ログアウトする</CustomButton>
+                    </form>
+                </div>
 
-                <p class="mt-4">
-                    <a class="font-bold underline" href="https://twitter.com/intent/tweet?hashtags=あにまるにゃ〜ん要望" target="_blank">#あにまるにゃ〜ん要望</a> のタグをつけてツイートして頂けますと、当サイトの開発者の気まぐれで対応するかもしれません。<br/>
-                    サイトが全く閲覧出来ないなどの致命的な問題が発生している際は、@plus_marumaru 宛てまでDM頂けますと幸いです。
-                </p>
-            </div>
+                <!-- 退会フォーム -->
+                <div class="bg-white rounded-xl border border-gray-200 shadow-md mx-2 my-4 px-4 py-4 lg:mx-6 lg:my-6 lg:px-8 lg:py-8">
+                    <h2 class="font-bold text-2xl lg:text-3xl">退会</h2>
+            
+                    <ul class="list-disc list-outside pl-5 mt-4">
+                        <li>当サイトからあなたのアカウントを削除します。</li>
+                        <li>当サイトでのあなたの全ての投稿を削除します。</li>
+                        <li>Twitterへ併せて投稿していた場合の、Twitterのツイートは削除しません。</li>
+                        <li>他のユーザー投稿にしたいいねの数は削除しません。</li>
+                    </ul>
+            
+                    <form @submit.prevent="submitWithdrawal" class="text-center m-4 lg:text-left">
+                        <input type="text" v-model="withdrawalForm.confirmText" class="appearance-none border w-full py-2 px-4 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"  placeholder="「退会する」と入力してボタンを押す">
+                        <CustomButton class="mt-6" type="submit" color='bg-red-600' hoverColor="hover:bg-red-400">退会する</CustomButton>
+                    </form>
+                </div>
 
-            <!-- ログアウトフォーム -->
-            <div class="bg-white rounded-xl border border-gray-200 shadow-md mx-2 my-2 px-4 py-4 lg:mx-6 lg:my-6 lg:px-8 lg:py-8">
-                <h2 class="font-bold text-2xl lg:text-3xl">ログアウト</h2>
-        
-                <form @submit.prevent="submitLogout" class="text-center m-4 lg:text-left">
-                    <CustomButton type="submit">ログアウトする</CustomButton>
-                </form>
-            </div>
-
-            <!-- 退会フォーム -->
-            <div class="bg-white rounded-xl border border-gray-200 shadow-md mx-2 my-2 px-4 py-4 lg:mx-6 lg:my-6 lg:px-8 lg:py-8">
-                <h2 class="font-bold text-2xl lg:text-3xl">退会</h2>
-        
-                <ul class="list-disc list-outside pl-5 mt-4">
-                    <li>当サイトからあなたのアカウントを削除します。</li>
-                    <li>当サイトでのあなたの全ての投稿を削除します。</li>
-                    <li>Twitterへ併せて投稿していた場合の、Twitterのツイートは削除しません。</li>
-                    <li>他のユーザー投稿にしたいいねの数は削除しません。</li>
-                </ul>
-        
-                <form @submit.prevent="submitWithdrawal" class="text-center m-4 lg:text-left">
-                    <input type="text" v-model="withdrawalForm.confirmText" class="appearance-none border w-full py-2 px-4 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"  placeholder="「退会する」と入力してボタンを押す">
-                    <CustomButton class="mt-6" type="submit" color='bg-red-600' hoverColor="hover:bg-red-400">退会する</CustomButton>
-                </form>
             </div>
 
         </article>

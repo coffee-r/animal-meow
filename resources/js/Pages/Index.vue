@@ -57,20 +57,29 @@ defineProps({
 
         </section>
 
-        <!-- 投稿タイムライン -->
-        <article class="bg-blue-100 bg-opacity-20 mt-10 py-3 lg:w-full lg:mt-0">
+        <!-- タイムライン -->
+        <article class="bg-blue-100 bg-opacity-20 h-screen lg:w-full lg:h-auto lg:mt-0">
 
-            <PostCard
-                v-for="post in posts"
-                v-bind:key="post.post_id"
-                v-bind:post_id="post.post_id"
-                v-bind:user_id="post.user_id"
-                v-bind:user_name="post.user_name"
-                v-bind:message="post.message"
-                v-bind:like_total_count="post.like_total_count"
-                v-bind:avatar_image_url="post.avatar_image_url"
-                v-bind:post_created_at="post.post_created_at"
-            ></PostCard>
+             <!-- 投稿がない時のメッセージ -->
+            <PostNoneMessage v-if="posts.length === 0" />
+
+            <!-- 背景色表示用padding -->
+            <div class="py-0.5 lg:px-0">
+
+                <!-- 投稿 -->
+                <PostCard
+                    v-for="post in posts"
+                    v-bind:key="post.post_id"
+                    v-bind:post_id="post.post_id"
+                    v-bind:user_id="post.user_id"
+                    v-bind:user_name="post.user_name"
+                    v-bind:message="post.message"
+                    v-bind:like_total_count="post.like_total_count"
+                    v-bind:avatar_image_url="post.avatar_image_url"
+                    v-bind:post_created_at="post.post_created_at"
+                ></PostCard>
+
+            </div>
             
         </article>
         

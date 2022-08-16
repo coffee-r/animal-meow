@@ -31,7 +31,7 @@ const isSelectedUrlPath = function(path){
 
         <!-- モーダルのナビゲーション -->
         <nav class="overflow-y-auto overflow-x-hidden fixed top-0 left-0 w-full h-full bg-gray-900/25 lg:hidden" @click.self="showModalMenu(false)" v-show="isOpenModalMenu">
-            <div class="text-center bg-white h-auto p-4 shadow-xl rounded mt-10 mx-6">
+            <div class="text-center bg-white h-auto p-4 shadow-xl rounded-xl mt-10 mx-6">
                 <ul class="mt-12 flex flex-col gap-8">
                     <Link href="/home"><li class="text-2xl hover:text-gray-500" v-bind:class="{'font-bold':isSelectedUrlPath('/home') }">ホーム</li></Link>
                     <Link href="/me"><li class="text-2xl hover:text-gray-500" v-bind:class="{'font-bold':isSelectedUrlPath('/me') }">自分の投稿</li></Link>

@@ -12,7 +12,7 @@ import OneColumnPageFooter from "@/Components/OneColumnPageFooter.vue";
         <OneColumnPageHeader />
 
         <!-- プライバシーポリシー 本文 -->
-        <article class="prose prose-sm sm:prose-base lg:prose-base max-w-5xl mx-auto bg-white border border-gray-200 rounded-xl shadow-md px-4 py-8 sm:px-8">
+        <article class="prose prose-sm sm:prose-base lg:prose-base max-w-5xl mx-2 lg:mx-auto bg-white border border-gray-200 rounded-xl shadow-md px-4 py-8 sm:px-8">
             
             <h1 class="text-center">プライバシーポリシー</h1>
 
