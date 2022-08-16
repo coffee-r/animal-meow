@@ -1,6 +1,7 @@
 <script setup>
 import { ref, reactive, onBeforeUnmount } from 'vue';
 import { Inertia } from '@inertiajs/inertia'
+import { usePage } from '@inertiajs/inertia-vue3'
 
 const props = defineProps({
     post_id: {
@@ -33,9 +34,13 @@ const props = defineProps({
     },
 });
 
+// ドロップダウンメニューを表示するかの変数
 const isOpenDropDownMenu = ref(false);
+
+// 投稿のいいね総数
 const like_total_count_reactive = ref(props.like_total_count);
 
+// 投稿時刻を加工する
 const postCreatedAt = function(){
     const nowDate = new Date();
     const postDate = new Date(props.post_created_at);
@@ -65,11 +70,26 @@ const postCreatedAt = function(){
     return postDate.getFullYear() + '年' + (postDate.getMonth() + 1) + '月' + postDate.getDate() + '日';
 }
 
+// ログインユーザーと投稿ユーザーが同一か判定する
+const isSamePostUserAuthUser = function(){
+    const authUser = usePage().props.value.auth.user;
+    if(authUser == null){
+        return false;
+    }
+    if(authUser.id != props.user_id){
+        return false;
+    }
+    return true;
+}
+
+// ドロップダウンメニューを表示する
+// ドロップダウンメニューは、メニュー以外の項目がクリックされた際に閉じるようにする
 const openDropDownMenu = function(){
     isOpenDropDownMenu.value = true;
     document.addEventListener('click', closeDropDownMenu);
 }
 
+// ドロップダウンメニューを閉じる
 const closeDropDownMenu = function(event){
     if(event.target.closest('.post-card-drop-down') != null){
         return;
@@ -78,10 +98,12 @@ const closeDropDownMenu = function(event){
     document.removeEventListener('click', closeDropDownMenu);
 }
 
+// 投稿削除
 const submitDeletePost = function(){
     Inertia.delete('/post/' + props.post_id);
 }
 
+// いいねを追加する
 const addLikeCount = function(){
     const response = axios.post("/api/likes/" + props.post_id);
     like_total_count_reactive.value += 1;
@@ -110,9 +132,8 @@ const addLikeCount = function(){
             </div>
         </div>
         
-
-        <img @click="openDropDownMenu()" class="post-card-drop-down ml-auto w-4 h-4" src="/images/three_point_leader_menu_icon.svg" />
-        <div class="post-card-drop-down relative">
+        <img v-if="isSamePostUserAuthUser()" @click="openDropDownMenu()" class="post-card-drop-down ml-auto w-4 h-4" src="/images/three_point_leader_menu_icon.svg" />
+        <div v-if="isSamePostUserAuthUser()" class="post-card-drop-down relative">
             <div class="absolute z-10 top-4 right-0 w-44 bg-white rounded shadow dark:bg-gray-700" v-show="isOpenDropDownMenu">
                 <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
                     <li>

@@ -13,7 +13,7 @@ const props = defineProps({
 
 // 投稿メッセージとして入力できる動物言葉
 // バインドさせておくことで、動物IMEの中の文字を入れ替えられるようにしたい
-const currentAnimalAvailableWords = ref(null);
+const currentAnimalAvailableWords = ref([]);
 
 // 投稿フォームのパラメタ
 const postForm = reactive({
@@ -73,7 +73,7 @@ const submitPost = function(){
         <article class="bg-blue-100 bg-opacity-20 lg:w-full lg:h-auto lg:mt-0">
             
             <!-- 投稿フォーム -->
-            <div class="flex mx-6 my-4 p-2 max-w-full bg-white rounded-lg border border-gray-200 shadow-md">
+            <div class="flex bg-white rounded-xl border border-gray-200 shadow-md mx-2 mb-4 px-4 py-4 lg:mx-6 lg:mt-3 lg:mb-6 lg:px-8 lg:py-8">
                 <form @submit.prevent="submitPost" class="w-full m-4">
 
                     <!-- 動物選択 -->
