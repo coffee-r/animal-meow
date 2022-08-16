@@ -10,6 +10,15 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
+        <!-- Google tag (gtag.js) -->
+        @production
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-K9D6BFDXNW"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+            </script>
+        @endproduction
+
         <!-- Scripts -->
         @routes
         @vite('resources/js/app.js')
