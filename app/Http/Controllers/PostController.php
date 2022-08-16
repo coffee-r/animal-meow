@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\CoffeeR\Post\Domain\AnimalMessageFactory;
@@ -81,7 +82,7 @@ class PostController extends Controller
         // コミット
         DB::commit();
 
-        // ホーム画面にリダイレクト
+        // 削除元の画面にリダイレクト
         return redirect('/home')->with('successMessages', $successMessages);
     }
 
@@ -110,6 +111,6 @@ class PostController extends Controller
         $post->delete();
 
         // ホーム画面にリダイレクト
-        return redirect('/home')->with('successMessages', ['投稿を削除しました。']);
+        return redirect(url()->previous())->with('successMessages', ['投稿を削除しました。']);
     }
 }
