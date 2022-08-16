@@ -29,13 +29,13 @@ defineProps({
         <LoginUserPcSideMenu />
 
         <!-- タイムライン -->
-        <article class="bg-blue-100 bg-opacity-20 h-screen lg:w-full lg:h-auto lg:mt-0">
+        <article class="bg-blue-100 bg-opacity-20 lg:w-full lg:h-auto lg:mt-0">
 
             <!-- 投稿がない時のメッセージ -->
-            <PostNoneMessage v-if="posts.length === 0" />
+            <PostNoneMessage v-if="posts.length == 0" />
 
             <!-- 背景色表示用padding -->
-            <div class="py-0.5 lg:px-0">
+            <div v-if="posts.length != 0" class="py-0.5 lg:px-0">
 
                 <!-- 投稿 -->
                 <PostCard
