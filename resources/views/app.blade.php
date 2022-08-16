@@ -13,10 +13,10 @@
         <!-- Google tag (gtag.js) -->
         @production
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-K9D6BFDXNW"></script>
-            <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-            </script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+        </script>
         @endproduction
 
         <!-- Scripts -->
