@@ -30,9 +30,9 @@ const isSelectedUrlPath = function(path){
 
         <footer class="lg:flex-none mt-16 mb-2">
             <ul class="flex justify-around gap-2">
-                <li><Link :href="route('terms')">利用規約</Link></li>
-                <li><Link :href="route('privacy')">プライバシーポリシー</Link></li>
-                <li><a href="https://twitter.com/plus_marumaru" target="_blank">&copy; 2022 coffee-r</a></li>
+                <li><Link class="hover:opacity-50" :href="route('terms')">利用規約</Link></li>
+                <li><Link class="hover:opacity-50" :href="route('privacy')">プライバシーポリシー</Link></li>
+                <li><a class="hover:opacity-50" href="https://twitter.com/plus_marumaru" target="_blank">&copy; 2022 coffee-r</a></li>
             </ul>
         </footer>
     </aside>
