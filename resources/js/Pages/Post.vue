@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, watch } from "vue"
+import { ref, reactive, watch, computed } from "vue"
 import { useForm } from '@inertiajs/inertia-vue3'
 import AnimalIME from "@/Components/AnimalIME.vue";
 import CustomButton from "@/Components/CustomButton.vue";
@@ -21,6 +21,9 @@ const postForm = useForm({
     message: '',
     withTweet: null,
 });
+
+// 投稿フォームに入力しているか
+const isFilledPostForm = computed(() => postForm.animalTypeId != '' && postForm.message != '')
 
 
 // 動物を選択したときに、動物IMEの中の文字を入れ替える
@@ -97,7 +100,7 @@ const submitPost = function(){
                     </div>
 
                     <!-- 投稿ボタン -->
-                    <CustomButton type="submit" v-bind:disabled="postForm.processing">鳴く</CustomButton>
+                    <CustomButton type="submit" v-bind:disabled="postForm.processing || !isFilledPostForm">鳴く</CustomButton>
 
                 </form>
             </div>

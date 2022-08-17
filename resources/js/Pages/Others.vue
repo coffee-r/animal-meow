@@ -1,5 +1,5 @@
 <script setup>
-import { reactive } from "vue"
+import { reactive, computed } from "vue"
 import { useForm } from '@inertiajs/inertia-vue3'
 import CustomButton from "@/Components/CustomButton.vue";
 import LoginUserSpHeader from "@/Components/LoginUserSpHeader.vue";
@@ -15,6 +15,9 @@ const logoutForm = useForm();
 const withdrawalForm = useForm({
     confirmText: null,
 })
+
+// 退会フォームに入力しているか
+const isFilledConfirmText = computed(() => withdrawalForm.confirmText == "退会する")
 
 // ログアウト
 const submitLogout = function(){
@@ -106,7 +109,7 @@ const submitWithdrawal = function(){
             
                     <form @submit.prevent="submitWithdrawal" class="text-center m-4 lg:text-left">
                         <input type="text" v-model="withdrawalForm.confirmText" class="appearance-none border w-full py-2 px-4 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"  placeholder="「退会する」と入力してボタンを押す">
-                        <CustomButton class="mt-6" type="submit"  v-bind:disabled="withdrawalForm.processing" color='bg-red-600' hoverColor="hover:bg-red-400">退会する</CustomButton>
+                        <CustomButton class="mt-6" type="submit"  v-bind:disabled="withdrawalForm.processing || !isFilledConfirmText" color='bg-red-600' hoverColor="hover:bg-red-400">退会する</CustomButton>
                     </form>
                 </div>
 

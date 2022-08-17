@@ -18,7 +18,7 @@ const props = defineProps({
     },
 });
 
-const buttonClass = props.color + " " + props.hoverColor + " text-white font-bold py-3 px-9 rounded-full text-xl lg:py-4 lg:px-12 lg:text-2xl"
+const buttonClass = props.color + " " + props.hoverColor + " disabled:opacity-50 text-white font-bold py-3 px-9 rounded-full text-xl lg:py-4 lg:px-12 lg:text-2xl"
 
 </script>
 
