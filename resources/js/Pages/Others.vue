@@ -77,13 +77,14 @@ const submitWithdrawal = function(){
                         <li>Tailwind CSS</li>
                         <li>Visual Studio Code</li>
                         <li>Figma</li>
+                        <li>Inkscape</li>
                         <li>Draw.io</li>
                         <li>icooon-mono.com</li>
                         <li>kiyaku.jp</li>
                     </ul>
             
                     <p class="mt-4">
-                        その他、世に広まっているたくさんの技術のおかげで本サービスを開発することが出来ています。
+                        その他、世に広まっているたくさんの技術やサービスのおかげでこのサイトを開発することが出来ています。
                     </p>
                 </div>
 
