@@ -15,12 +15,17 @@ const props = defineProps({
 // バインドさせておくことで、動物IMEの中の文字を入れ替えられるようにしたい
 const currentAnimalAvailableWords = ref([]);
 
+// 投稿メッセージの言葉の配列
+// ※ postForm.messageで絵文字を削除しようとすると文字化けする問題があったため、ユーザーの入力を一旦配列に入れます
+const inputWordsArray = ref([]);
+
 // 投稿フォーム
 const postForm = useForm({
     animalTypeId: '',
     message: '',
     withTweet: null,
 });
+
 
 // 投稿フォームに入力しているか
 const isFilledPostForm = computed(() => postForm.animalTypeId != '' && postForm.message.trim().length != 0)
@@ -35,22 +40,25 @@ watch(
         currentAnimalAvailableWords.value = Array.from(new Set(props.animals[animalTypeId]['availableWords']));
 
         // 投稿メッセージのクリア
-        postForm.message = '';
+        inputWordsArray.value = [];
+        postForm.message = inputWordsArray.value.join('');
     }
 )
 
 // 投稿メッセージ末尾に文字を追加する
 const addWordToMessage = function(word){
     // 120文字以上は投稿できない
-    if(postForm.message.length > 120){
+    if(inputWordsArray.value.length >= 120){
         return;
     }
-    postForm.message += word;
+    inputWordsArray.value.push(word);
+    postForm.message = inputWordsArray.value.join('');
 }
 
 // 投稿メッセージ末尾の文字を削除する
 const removeOneWordToMessage = function(){
-    postForm.message = postForm.message.slice(0, -1);
+    inputWordsArray.value.pop();
+    postForm.message = inputWordsArray.value.join('');
 }
 
 // 投稿フォームを送信する
