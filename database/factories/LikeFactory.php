@@ -4,11 +4,12 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
+use App\Models\Post;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Like>
  */
-class PostFactory extends Factory
+class LikeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,12 +19,12 @@ class PostFactory extends Factory
     public function definition()
     {
         $user = User::inRandomOrder()->first();
+        $post = Post::inRandomOrder()->first();
 
         return [
             'user_id' => $user->id,
-            'animal_type_id' => mt_rand(1, 100),
-            'message' => fake()->text(),
-            'like_total_count' => mt_rand(0, 99999999999999),
+            'post_id' => $post->id,
+            'like_count' => mt_rand(0, 99999999999999),
         ];
     }
 }
