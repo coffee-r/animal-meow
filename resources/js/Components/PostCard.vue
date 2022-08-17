@@ -141,7 +141,7 @@ const addLikeCount = async function(){
             <!-- ユーザー名 | 3点リーダーメニュー で横に分割 -->
             <div class="flex">
                 <span class="text-sm font-bold tracking-tight text-gray-900 dark:text-white">{{ user_name }}</span>
-                <img v-if="isSamePostUserAuthUser()" @click="openDropDownMenu()" class="post-card-drop-down ml-auto w-4 h-4" src="/images/three_point_leader_menu_icon.svg" />
+                <button v-if="isSamePostUserAuthUser()" @click="openDropDownMenu()" class="post-card-drop-down bg-[url('/images/three_point_leader_menu_icon.svg')] ml-auto w-4 h-4 hover:opacity-50" />
                 <div v-if="isSamePostUserAuthUser()" class="post-card-drop-down relative">
                     <div class="absolute z-10 top-4 right-0 w-44 bg-white rounded shadow dark:bg-gray-700" v-show="isOpenDropDownMenu">
                         <ul class="text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
@@ -160,7 +160,7 @@ const addLikeCount = async function(){
 
             <!-- いいね数 -->
             <div class="flex justify-start">
-                <img @click="addLikeCount" class="w-5 h-5" src="/images/like_icon.svg" />
+                <button class="bg-[url('/images/like_icon.svg')] w-5 h-5 hover:opacity-50" @click="addLikeCount" />
                 <div class="ml-1 text-sm">{{ like_total_count_reactive }}</div>
                 <p class="ml-auto text-sm text-gray-400">{{ postCreatedAt() }}</p>
             </div>
