@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('message');
             $table->unsignedBigInteger('like_total_count')->default(0);
             $table->timestamps();
+            $table->index('user_id', 'user_id_index');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
