@@ -104,9 +104,26 @@ const submitDeletePost = function(){
 }
 
 // いいねを追加する
-const addLikeCount = function(){
-    const response = axios.post("/api/likes/" + props.post_id);
-    like_total_count_reactive.value += 1;
+const addLikeCount = async function(){
+    // ログインユーザーでない場合は終了
+    if(usePage().props.value.auth.user  == null){
+        return;
+    }
+
+    // いいね追加APIをcallする
+    await axios.post(route('like.post', props.post_id))
+               .then(response => like_total_count_reactive.value += 1)
+               .catch(error => {
+                    if(error.response){
+                        if(error.response.status == 429){
+                            alert('一定時間内にできるいいねの上限を超えました。しばらくお待ちください。');
+                        }else{
+                            alert('不明なエラーが発生しました。 status code : ' + error.response.status);
+                        }
+                    }else{
+                        alert('不明なエラーが発生しました。');
+                    }
+                });
 }
 
 </script>
