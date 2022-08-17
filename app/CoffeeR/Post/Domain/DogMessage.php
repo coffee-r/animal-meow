@@ -3,7 +3,7 @@
 namespace App\CoffeeR\Post\Domain;
 
 /**
- * イヌのメッセージ
+ * いぬのメッセージ
  */
 class DogMessage implements AnimalMessageInterface
 {

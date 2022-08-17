@@ -3,29 +3,32 @@
 namespace App\CoffeeR\Post\Domain;
 
 /**
- * ねこのメッセージ
+ * かえるのメッセージ
  */
-class CatMessage implements AnimalMessageInterface
+class FlogMessage implements AnimalMessageInterface
 {
     private string $value;
 
     public const AVAILABLE_WORDS = [
-        'に',
-        'ゃ',
+        'け',
+        'ろ',
         'ん',
-        'や',
+        'げ',
+        'こ',
+        'ぉ',
         'っ',
-        'ニ',
-        'ャ',
+        'ケ',
+        'ロ',
         'ン',
-        'ヤ',
+        'ゲ',
+        'コ',
+        'ォ',
         'ッ',
-        'シ',
         '〜',
         'ー',
         '！',
         '？',
-        '🐱',
+        '🐸',
         ' ',
     ];
 

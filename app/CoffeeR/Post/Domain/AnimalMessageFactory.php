@@ -16,6 +16,15 @@ class AnimalMessageFactory
             case 3:
                 $animalMessage = new GoriraMessage($message);
                 break;
+            case 4:
+                $animalMessage = new ChickMessage($message);
+                break;
+            case 5:
+                $animalMessage = new ElephantMessage($message);
+                break;
+            case 6:
+                $animalMessage = new FlogMessage($message);
+                break;
             default:
                 throw new \InvalidArgumentException('animal type id ' . $animalType . ' not supported');
                 break;

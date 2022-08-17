@@ -12,6 +12,9 @@ use App\CoffeeR\Post\Domain\AnimalMessageFactory;
 use App\CoffeeR\Post\Domain\CatMessage;
 use App\CoffeeR\Post\Domain\DogMessage;
 use App\CoffeeR\Post\Domain\GoriraMessage;
+use App\CoffeeR\Post\Domain\ChickMessage;
+use App\CoffeeR\Post\Domain\ElephantMessage;
+use App\CoffeeR\Post\Domain\FlogMessage;
 use App\CoffeeR\Post\Repository\TweetRepository;
 use Exception;
 
@@ -26,9 +29,12 @@ class PostController extends Controller
     {
         // 投稿に利用できる言葉を動物ごとに取得する
         $animals = [
-            1 => ['name' => 'ネコ', 'availableWords' => CatMessage::AVAILABLE_WORDS],
-            2 => ['name' => 'イヌ', 'availableWords' => DogMessage::AVAILABLE_WORDS],
-            3 => ['name' => 'ゴリラ', 'availableWords' => GoriraMessage::AVAILABLE_WORDS],
+            1 => ['id' => 1, 'name' => 'ねこ', 'availableWords' => CatMessage::AVAILABLE_WORDS],
+            2 => ['id' => 2, 'name' => 'いぬ', 'availableWords' => DogMessage::AVAILABLE_WORDS],
+            3 => ['id' => 3, 'name' => 'ごりら', 'availableWords' => GoriraMessage::AVAILABLE_WORDS],
+            4 => ['id' => 4, 'name' => 'ひよこ', 'availableWords' => ChickMessage::AVAILABLE_WORDS],
+            5 => ['id' => 5, 'name' => 'ぞう', 'availableWords' => ElephantMessage::AVAILABLE_WORDS],
+            6 => ['id' => 6, 'name' => 'かえる', 'availableWords' => FlogMessage::AVAILABLE_WORDS],
         ];
 
         return Inertia::render('Post', [

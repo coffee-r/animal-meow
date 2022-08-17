@@ -3,7 +3,7 @@
 namespace App\CoffeeR\Post\Domain;
 
 /**
- * ゴリラのメッセージ
+ * ごりらのメッセージ
  */
 class GoriraMessage implements AnimalMessageInterface
 {
