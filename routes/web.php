@@ -76,4 +76,6 @@ Route::get('/privacy', function () {
     return Inertia::render('Privacy');
 })->name('privacy');
 
+// Laravel Breeze が用意してくれているコントローラーのルーティング
+// 必要ないのでコメントアウト
 // require __DIR__.'/auth.php';
