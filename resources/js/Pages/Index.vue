@@ -2,6 +2,7 @@
 import { Link } from "@inertiajs/inertia-vue3";
 import CustomButton from "@/Components/CustomButton.vue";
 import PostCard from "@/Components/PostCard.vue";
+import PostNoneMessage from "@/Components/PostNoneMessage.vue";
 import FlashSuccessMessages from "@/Components/FlashSuccessMessages.vue";
 
 defineProps({
