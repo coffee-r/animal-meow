@@ -23,7 +23,7 @@ const postForm = useForm({
 });
 
 // 投稿フォームに入力しているか
-const isFilledPostForm = computed(() => postForm.animalTypeId != '' && postForm.message != '')
+const isFilledPostForm = computed(() => postForm.animalTypeId != '' && postForm.message.trim().length != 0)
 
 
 // 動物を選択したときに、動物IMEの中の文字を入れ替える
