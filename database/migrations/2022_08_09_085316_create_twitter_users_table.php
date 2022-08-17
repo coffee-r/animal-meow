@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamp('access_token_time_limit');
             $table->string('refresh_token');
             $table->timestamps();
+            $table->index('animal_meow_user_id', 'animal_meow_user_id_index');
             $table->foreign('animal_meow_user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
