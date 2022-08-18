@@ -26,7 +26,7 @@ class LikeUpsertAction
     public function __invoke(int $post_id): void
     {
         // 投稿を取得
-        $post = Post::find($post_id);
+        $post = $this->post->find($post_id);
 
         // 存在しない投稿にはいいねはできない
         if (empty($post)) {
@@ -34,9 +34,10 @@ class LikeUpsertAction
         }
 
         // ユーザーのいいねを取得
-        $like = Like::where('post_id', $post_id)
-                    ->where('user_id', Auth::id())
-                    ->first();
+        $like = $this->like
+                     ->where('post_id', $post_id)
+                     ->where('user_id', Auth::id())
+                     ->first();
 
         // トランザクション
         DB::beginTransaction();
