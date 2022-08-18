@@ -7,7 +7,6 @@ use App\Models\Post;
 use App\Models\TwitterUser;
 use App\CoffeeR\UseCases\WithdrawalAction;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use League\OAuth1\Client\Server\Twitter;
 use Tests\TestCase;
 
 
