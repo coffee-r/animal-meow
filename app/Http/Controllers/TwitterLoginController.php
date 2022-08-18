@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\CoffeeR\UseCases\TwitterLoginAction;
+use App\CoffeeR\UseCases\UserUpsertWithTwitterAction;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use App\Models\User;
-use App\Models\TwitterUser;
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Scope;
 
 /**
  * Twitterログインコントローラー
@@ -39,58 +36,17 @@ class TwitterLoginController extends Controller
      *
      * @return void
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback(UserUpsertWithTwitterAction $userUpsertWithTwitterAction)
     {
         // twitterのユーザーを取得
         $twitterUserFromSocialite = Socialite::driver('twitter')->user();
 
-        // twitterのidを条件にユーザーを取得
-        $user = User::join('twitter_users', 'users.id', '=', 'twitter_users.animal_meow_user_id')
-                   ->where('twitter_users.twitter_id', $twitterUserFromSocialite->getId())
-                   ->select('users.*')
-                   ->first();
-
-        // トランザクション
-        DB::beginTransaction();
-
-        // ユーザーが既に存在する場合は更新処理、存在しない場合は新規作成する
-        // ユーザーが存在しない場合は、ユーザーとtokenレコードの新規作成を行う。
-        if ($user) {
-            // ユーザーの更新
-            $user->name = $twitterUserFromSocialite->getName();
-            $user->avatar_image_url = $twitterUserFromSocialite->getAvatar();
-            $user->update();
-
-            // Twitterユーザーの更新
-            $twitterUser = TwitterUser::where('animal_meow_user_id', $user->id)->first();
-            $twitterUser->nickname = $twitterUserFromSocialite->getNickname();
-            $twitterUser->access_token = $twitterUserFromSocialite->token;
-            $twitterUser->access_token_time_limit = new Carbon('+' . $twitterUserFromSocialite->expiresIn . ' seconds');
-            $twitterUser->refresh_token = $twitterUserFromSocialite->refreshToken;
-            $twitterUser->update();
-        } else {
-            // ユーザーの新規作成
-            $user = new User();
-            $user->name = $twitterUserFromSocialite->getName();
-            $user->avatar_image_url = $twitterUserFromSocialite->getAvatar();
-            $user->save();
-
-            // Twitterユーザーの新規作成
-            $twitterUser = new TwitterUser();
-            $twitterUser->twitter_id = $twitterUserFromSocialite->getId();
-            $twitterUser->animal_meow_user_id = $user->id;
-            $twitterUser->nickname = $twitterUserFromSocialite->getNickname();
-            $twitterUser->access_token = $twitterUserFromSocialite->token;
-            $twitterUser->access_token_time_limit = new Carbon('+' . $twitterUserFromSocialite->expiresIn . ' seconds');
-            $twitterUser->refresh_token = $twitterUserFromSocialite->refreshToken;
-            $twitterUser->save();
-        }
+        // twitterのユーザー情報を使って
+        // ユーザーを新規登録・更新
+        $user = $userUpsertWithTwitterAction($twitterUserFromSocialite);
 
         // ログイン
         Auth::login($user);
-
-        // コミット
-        DB::commit();
 
         // ホーム画面にリダイレクト
         return redirect('/home')->with('successMessages', ['ログインしました。']);
