@@ -15,6 +15,7 @@ use App\CoffeeR\Post\Domain\GoriraMessage;
 use App\CoffeeR\Post\Domain\ChickMessage;
 use App\CoffeeR\Post\Domain\ElephantMessage;
 use App\CoffeeR\Post\Domain\FlogMessage;
+use App\CoffeeR\Post\Repository\Tweet;
 use App\CoffeeR\Post\Repository\TweetRepository;
 use Exception;
 
@@ -81,8 +82,8 @@ class PostController extends Controller
         // ツイート
         if ($request->input('withTweet')) {
             $tweetRepository = new TweetRepository();
-            $tweetResult = $tweetRepository->tweet($animalMessage->toString() . " #あにまるにゃ〜ん");
-            $successMessages[] = "<a class='underline' href='".$tweetResult['tweetLink']."' target='_blank'>Twitter</a>に投稿しました。";
+            $tweet = $tweetRepository->tweet($animalMessage->toString() . " #あにまるにゃ〜ん");
+            $successMessages[] = "<a class='underline' href='".$tweet->url."' target='_blank'>Twitter</a>に投稿しました。";
         }
 
         // コミット

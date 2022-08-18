@@ -2,12 +2,14 @@
 
 namespace App\CoffeeR\Post\Repository;
 
+use App\CoffeeR\Post\Domain\Tweet;
+use App\CoffeeR\Post\Domain\TweetRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 use App\Models\TwitterUser;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 
-class TweetRepository
+class TweetRepository implements TweetRepositoryInterface
 {
     private const TOKEN_ENDPOINT_URL = 'https://api.twitter.com/2/oauth2/token';
     private const TWEET_ENDPOINT_URL = 'https://api.twitter.com/2/tweets';
@@ -15,10 +17,10 @@ class TweetRepository
     /**
      * ツイートする
      *
-     * @param string $tweetMessage
+     * @param string $message
      * @return array
      */
-    public function tweet(string $tweetMessage): array
+    public function tweet(string $message): Tweet
     {
         // twitterユーザー情報を取得
         $twitterUser = TwitterUser::where('animal_meow_user_id', Auth::id())->first();
@@ -50,15 +52,15 @@ class TweetRepository
         // ツイートする
         $tweetResponse = Http::withToken($twitterUser->access_token)
                              ->post(self::TWEET_ENDPOINT_URL, [
-                                 'text' => $tweetMessage,
+                                 'text' => $message,
                              ]);
 
         // レスポンスを配列に加工する
         $tweetResponseArray = json_decode($tweetResponse->getBody(), true);
 
-        // ツイートのリンクを返却する
-        return [
-            'tweetLink' => "https://twitter.com/".$twitterUser->nickname."/status/".$tweetResponseArray['data']['id']
-        ];
+        return new Tweet(
+            $tweetResponseArray['data']['text'],
+            "https://twitter.com/".$twitterUser->nickname."/status/".$tweetResponseArray['data']['id']
+        );
     }
 }
