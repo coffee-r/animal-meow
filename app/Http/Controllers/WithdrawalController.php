@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\CoffeeR\UseCases\WithdrawalAction;
 
 class WithdrawalController extends Controller
@@ -25,6 +26,9 @@ class WithdrawalController extends Controller
 
         // 退会処理
         $withdrawalAction();
+
+        // ログアウト
+        Auth::logout();
 
         // 退会後画面にリダイレクト
         return redirect('/after_withdrawal')->with('successMessages', ['退会しました。']);

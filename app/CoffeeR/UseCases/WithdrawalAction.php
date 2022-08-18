@@ -38,9 +38,6 @@ class WithdrawalAction
         // ユーザーを削除
         $this->user->where('id', Auth::id())->delete();
 
-        // ログアウト
-        Auth::logout();
-
         // コミット
         DB::commit();
     }
