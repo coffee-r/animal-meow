@@ -28,7 +28,7 @@ defineProps({
             <div class="lg:flex-1">
 
                 <!-- サイトタイトル -->
-                <h1 class="text-center font-bold text-6xl mt-10 lg:text-7xl lg:mt-20 lg:leading-tight">
+                <h1 class="text-center font-bold text-6xl mt-8 lg:text-7xl lg:leading-tight 2xl:mt-16">
                     あにまる<br />にゃ〜ん
                 </h1>
 
@@ -44,6 +44,10 @@ defineProps({
                     <a :href="route('login.twitter')">
                         <CustomButton>Twitterでログイン</CustomButton>
                     </a>
+                    <div class="mt-3 text-xs">
+                        <Link class="hover:text-gray-500" :href="route('terms')">利用規約</Link>・<Link class="hover:text-gray-500" :href="route('privacy')">プライバシーポリシー</Link>に<br/>
+                        同意の上でご利用ください
+                    </div>
                 </div>
             </div>
 
