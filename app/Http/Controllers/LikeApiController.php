@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
-use App\Models\Post;
-use App\Models\Like;
-use Exception;
-use Illuminate\Support\Facades\Auth;
+use App\CoffeeR\UseCases\LikeUpsertAction;
+use App\Exceptions\NotFoundException;
 
 class LikeApiController extends Controller
 {
@@ -18,45 +16,15 @@ class LikeApiController extends Controller
      * @param Request $request
      * @return void
      */
-    public function upsert($post_id, Request $request)
+    public function upsert(int $post_id, Request $request, LikeUpsertAction $likeUpsertAction)
     {
-        // 投稿を取得
-        $post = Post::find($post_id);
-
-        // 存在しない投稿にはいいねはできない
-        if (empty($post)) {
-            throw new Exception("post_id " . $post_id . " not found.");
+        // いいね処理
+        try{
+            $likeUpsertAction($post_id);
+        }catch(NotFoundException $e){
+            return response($e->getMessage(), 404);
         }
 
-        // ユーザーのいいねを取得
-        $like = Like::where('post_id', $post_id)
-                    ->where('user_id', Auth::id())
-                    ->first();
-
-        // トランザクション
-        DB::beginTransaction();
-
-        // 投稿のtotalいいねを+1
-        $post->like_total_count += 1;
-        $post->update();
-
-        // ユーザーのいいねが既にある場合はいいねを+1、
-        // ユーザーのいいねが既にある場合は新規作成
-        if ($like) {
-            $like->like_count += 1;
-            $like->update();
-        } else {
-            $like = new Like();
-            $like->user_id = Auth::id();
-            $like->post_id = $post_id;
-            $like->like_count = 1;
-            $like->save();
-        }
-
-        // コミット
-        DB::commit();
-
-        // レスポンス
-        return response('', 200);
+        response('', 200);        
     }
 }
