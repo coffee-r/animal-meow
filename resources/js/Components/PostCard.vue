@@ -133,7 +133,7 @@ const addLikeCount = async function(){
     <div class="flex bg-white rounded-xl border border-gray-200 shadow-md mx-2 my-1 p-2">
 
         <!-- アバター画像 -->
-        <img class="w-12 h-12 rounded-full border-4 border-slate-50 object-cover" :src=avatar_image_url />
+        <img class="w-12 h-12 rounded-full object-cover" :src=avatar_image_url />
         
         <!-- ユーザー名・3点リーダーメニュー | 投稿文章・いいね数・投稿時間 で縦に分割 -->
         <div class="flex flex-col px-1 w-full">
