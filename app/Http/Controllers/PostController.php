@@ -44,11 +44,11 @@ class PostController extends Controller
         // フォームバリデーション
         $validated = $request->validate([
             'animalId' => 'required',
-            'message' => 'required|max:120',
+            'message' => 'required|max:100',
         ],[
             'animalId.required' => '動物を選択してください',
             'message.required' => '投稿メッセージを入力してください',
-            'message.max' => '投稿メッセージは最大120文字までです',
+            'message.max' => '投稿メッセージは最大100文字までです',
         ]);
 
         // フラッシュメッセージ用変数

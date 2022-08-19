@@ -47,8 +47,8 @@ watch(
 
 // 投稿メッセージ末尾に文字を追加する
 const addWordToMessage = function(word){
-    // 120文字以上は投稿できない
-    if(inputWordsArray.value.length >= 120){
+    // 100文字以上は投稿できない
+    if(inputWordsArray.value.length >= 100){
         return;
     }
     inputWordsArray.value.push(word);
