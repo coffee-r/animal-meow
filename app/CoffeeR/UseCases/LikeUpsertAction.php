@@ -5,7 +5,7 @@ namespace App\CoffeeR\UseCases;
 use App\Models\Post;
 use App\Models\Like;
 use App\Models\TwitterUser;
-use App\Exceptions\NotFoundException;
+use App\Exceptions\PostNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -30,7 +30,7 @@ class LikeUpsertAction
 
         // 存在しない投稿にはいいねはできない
         if (empty($post)) {
-            throw new NotFoundException("post_id " . $post_id . " not found.");
+            throw new PostNotFoundException("投稿id「".$post_id."」が見つかりませんでした。");
         }
 
         // ユーザーのいいねを取得

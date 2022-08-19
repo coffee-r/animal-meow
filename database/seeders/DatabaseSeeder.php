@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\CoffeeR\Post\Domain\Animal;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,6 +21,7 @@ class DatabaseSeeder extends Seeder
             TwitterUserSeeder::class,
             PostSeeder::class,
             LikeSeeder::class,
+            AnimalSeeder::class,
         ]);
     }
 }

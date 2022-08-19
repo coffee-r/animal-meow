@@ -13,15 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('animals', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('animal_id');
-            $table->string('message');
-            $table->unsignedBigInteger('like_total_count')->default(0);
+            $table->string('name');
+            $table->string('language');
             $table->timestamps();
-            $table->index('user_id', 'user_id_index');
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('animals');
     }
 };

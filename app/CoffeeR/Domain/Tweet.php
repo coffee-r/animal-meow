@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CoffeeR\Post\Domain;
+namespace App\CoffeeR\Domain;
 
 use InvalidArgumentException;
 

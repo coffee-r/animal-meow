@@ -46,6 +46,9 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'successMessages' => function () use ($request) {
                     return $request->session()->get('successMessages');
+                },
+                'failMessages' => function () use ($request) {
+                    return $request->session()->get('failMessages');
                 }
             ],
         ]);

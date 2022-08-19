@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\CoffeeR\Domain;
 
 use PHPUnit\Framework\TestCase;
-use App\CoffeeR\Post\Domain\Tweet;
+use App\CoffeeR\Domain\Tweet;
 
 class TweetTest extends TestCase
 {
@@ -13,7 +13,6 @@ class TweetTest extends TestCase
         $this->expectExceptionMessage('ツイートのテキストが空文字です。');
         $tweet = new Tweet('', 'https://example.com');
     }
-
 
     public function test_non_url()
     {

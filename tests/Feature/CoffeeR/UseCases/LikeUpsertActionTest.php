@@ -6,7 +6,7 @@ use App\CoffeeR\UseCases\LikeUpsertAction;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Like;
-use App\Exceptions\NotFoundException;
+use App\Exceptions\PostNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -24,7 +24,7 @@ class LikeUpsertActionTest extends TestCase
         $this->actingAs($user);
 
         $likeUpsertAction = new LikeUpsertAction(new Post(), new Like());
-        $this->expectException(NotFoundException::class);
+        $this->expectException(PostNotFoundException::class);
         $likeUpsertAction(0);
     }
 

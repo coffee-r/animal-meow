@@ -21,7 +21,7 @@ class PostFactory extends Factory
 
         return [
             'user_id' => $user->id,
-            'animal_type_id' => mt_rand(1, 100),
+            'animal_id' => mt_rand(1, 100),
             'message' => fake()->text(),
             'like_total_count' => mt_rand(0, 99999999999999),
         ];

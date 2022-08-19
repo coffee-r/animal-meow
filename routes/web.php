@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/post', 'App\Http\Controllers\PostController@store')->name('post.store');
 
     // 投稿削除処理
-    Route::delete('/post/{id}', 'App\Http\Controllers\PostController@destroy')->name('post.destroy');
+    Route::delete('/post/{post_id}', 'App\Http\Controllers\PostController@destroy')->name('post.destroy');
 
     // その他
     Route::get('/others', function () {

@@ -4,7 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 
-class NotFoundException extends Exception
+class TwitterClientException extends Exception
 {
     //
 }
