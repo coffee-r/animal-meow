@@ -13,6 +13,7 @@ use App\Models\Post;
 use App\Models\Animal;
 use App\CoffeeR\UseCases\PostStoreAction;
 use App\CoffeeR\UseCases\TweetAction;
+use App\Exceptions\TwitterClientException;
 use Exception;
 
 class PostController extends Controller
@@ -52,7 +53,7 @@ class PostController extends Controller
 
         // フラッシュメッセージ用変数
         $successMessages = [];
-        $failMessages = [];
+        
 
         // トランザクション
         // このサービスの投稿もツイートも成功 ⇨ コミット
@@ -70,13 +71,11 @@ class PostController extends Controller
                 $tweet = $tweetAction($request->input('message'));
                 $successMessages[] = "<a class='underline' href='".$tweet->url."' target='_blank'>Twitter</a>に投稿しました。";
             }
-        }catch(Exception $e){
-            // エラーログ書き込み
-            Log::error($e->getMessage());
-
+        }catch(TwitterClientException $e){
             // フラッシュメッセージ設定
+            $failMessages = [];
             $failMessages[] = "投稿に失敗しました。";
-            var_dump($e->getMessage());exit();
+            $failMessages[] = $e->getMessage();
             
             // ホーム画面にリダイレクト
             return redirect('/home')->with('failMessages', $failMessages);

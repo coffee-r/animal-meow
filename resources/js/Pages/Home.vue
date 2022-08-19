@@ -6,6 +6,7 @@ import LoginUserSpHeader from "@/Components/LoginUserSpHeader.vue";
 import FixedPostButton from "@/Components/FixedPostButton.vue";
 import LoginUserPcSideMenu from "@/Components/LoginUserPcSideMenu.vue";
 import FlashSuccessMessages from "@/Components/FlashSuccessMessages.vue";
+import FlashFailMessages from "@/Components/FlashFailMessages.vue";
 
 defineProps({
     posts: Array,
@@ -21,6 +22,7 @@ defineProps({
 
     <!-- 投稿やログインの通知 -->
     <FlashSuccessMessages />
+    <FlashFailMessages />
 
     <!-- PCのみ2カラム構成のレイアウトにする -->
     <main class="lg:flex">

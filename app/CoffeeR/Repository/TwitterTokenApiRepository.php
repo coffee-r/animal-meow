@@ -5,8 +5,11 @@ namespace App\CoffeeR\Repository;
 use Carbon\Carbon;
 use App\CoffeeR\Domain\TwitterTokenRepositoryInterface;
 use App\Models\TwitterUser;
+use Exception;
+use App\Exceptions\TwitterClientException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class TwitterTokenApiRepository implements TwitterTokenRepositoryInterface
 {
@@ -31,6 +34,27 @@ class TwitterTokenApiRepository implements TwitterTokenRepositoryInterface
                             'grant_type' => 'refresh_token',
                             'client_id' => config('services.twitter.client_id'),
                         ]);
+        
+        // Twitter側でエラーが起きている場合はどうしようもないのでログとって例外なげる
+        if($response->serverError()){
+            Log::error('user_id='.Auth::id()." ".$response->body());
+            throw new Exception($response->body());
+        }
+        
+        // クライアント側に問題があるエラーは、
+        // エンドユーザー向けに何が起きたかを説明するためのメッセージを例外に入れて投げる
+        if($response->clientError()){
+
+            Log::error('user_id='.Auth::id()." ".$response->body());
+
+            // 認可エラー
+            if($response->status() === 401){
+                throw new TwitterClientException('Twitterとの連携に問題が発生しました。恐れ入りますが当サイトから一度ログアウトした後、投稿をお試しください。');
+            }
+
+            // その他のクライアントエラー
+            throw new TwitterClientException('不明なエラーが発生しました。');
+        }
         
         $body = $response->object();
         
