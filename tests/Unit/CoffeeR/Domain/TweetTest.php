@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use App\CoffeeR\Post\Domain\Tweet;
+use App\CoffeeR\Domain\Tweet;
 
 class TweetTest extends TestCase
 {
