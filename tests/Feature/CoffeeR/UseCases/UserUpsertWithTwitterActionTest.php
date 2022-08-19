@@ -61,13 +61,12 @@ class UserUpsertWithTwitterActionTest extends TestCase
         $userUpsertWithTwitterAction = new UserUpsertWithTwitterAction(new User(), new TwitterUser());
         $user = $userUpsertWithTwitterAction($this->socialiteUserMock);
 
+        // 登録したユーザーが存在することを期待
         $this->assertDatabaseHas('users', [
             'id' => $user->id,
             'name' => 'test_name',
-            'avatar_image_url' => 'https://example.com/test.jpg',
-
+            'avatar_image_url' => 'https://example.com/test.jpg'
         ]);
-
         $this->assertDatabaseHas('twitter_users', [
             'twitter_id' => 'test_twitter_id',
             'nickname' => 'test_nickname',

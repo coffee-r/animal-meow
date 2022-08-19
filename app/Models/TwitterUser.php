@@ -9,6 +9,7 @@ class TwitterUser extends Model
 {
     use HasFactory;
 
+    public $incrementing = false;
     protected $primaryKey = 'twitter_id';
 
     /**
