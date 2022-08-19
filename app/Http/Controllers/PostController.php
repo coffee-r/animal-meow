@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CoffeeR\UseCases\PostDeleteAction;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -94,23 +95,10 @@ class PostController extends Controller
      * @param [type] $id posts.id
      * @return void
      */
-    public function destroy($id)
+    public function destroy(int $post_id, PostDeleteAction $postDeleteAction)
     {
-        // 投稿を取得
-        $post = Post::find($id);
-
-        // 存在しない投稿は削除できない
-        if (!$post) {
-            throw new Exception('post.id ' . $id . " not exist");
-        }
-
-        // 他人の投稿は削除できない
-        if ($post->user_id !== Auth::id()) {
-            throw new Exception('post.id ' . $id . " post can only be deleted user_id ".$post->user_id);
-        }
-
-        // 投稿を削除
-        $post->delete();
+        // 投稿削除
+        $postDeleteAction($post_id);
 
         // ホーム画面にリダイレクト
         return redirect(url()->previous())->with('successMessages', ['投稿を削除しました。']);
