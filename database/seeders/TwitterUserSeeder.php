@@ -18,7 +18,7 @@ class TwitterUserSeeder extends Seeder
     {
         $users = User::all();
         foreach ($users as $key => $user) {
-            TwitterUser::insert([
+            TwitterUser::create([
                 'twitter_id' => Str::random(30),
                 'animal_meow_user_id' => $user->id,
                 'nickname' => Str::random(20),
