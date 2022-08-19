@@ -12,12 +12,10 @@ use Illuminate\Support\Facades\Auth;
  */
 class PostStoreAction
 {
-    private $post;
     private $animal;
 
     public function __construct(Post $post, Animal $animal)
     {
-        $this->post = $post;
         $this->animal = $animal;
     }
 
