@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('animal_type_id');
+            $table->unsignedBigInteger('animal_id');
             $table->string('message');
             $table->unsignedBigInteger('like_total_count')->default(0);
             $table->timestamps();

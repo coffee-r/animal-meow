@@ -21,23 +21,23 @@ const inputWordsArray = ref([]);
 
 // 投稿フォーム
 const postForm = useForm({
-    animalTypeId: '',
+    animalId: '',
     message: '',
     withTweet: null,
 });
 
 
 // 投稿フォームに入力しているか
-const isFilledPostForm = computed(() => postForm.animalTypeId != '' && postForm.message.trim().length != 0)
+const isFilledPostForm = computed(() => postForm.animalId != '' && postForm.message.trim().length != 0)
 
 
 // 動物を選択したときに、動物IMEの中の文字を入れ替える
 watch(
-    () => postForm.animalTypeId,
-    (animalTypeId, prevAnimalTypeId) => {
+    () => postForm.animalId,
+    (animalId, prevanimalId) => {
         // 文字の入れ替え
-        // currentAnimalAvailableWords.value = props.animals[animalTypeId]['availableWords']; これだと文字が重複する挙動が何故か起こるので以下コードにする
-        currentAnimalAvailableWords.value = Array.from(new Set(props.animals.find(animal => animal.id == animalTypeId).words));
+        // currentAnimalAvailableWords.value = props.animals[animalId]['availableWords']; これだと文字が重複する挙動が何故か起こるので以下コードにする
+        currentAnimalAvailableWords.value = Array.from(new Set(props.animals.find(animal => animal.id == animalId).words));
 
         // 投稿メッセージのクリア
         inputWordsArray.value = [];
@@ -89,7 +89,7 @@ const submitPost = function(){
                 <form @submit.prevent="submitPost" class="w-full m-4">
 
                     <!-- 動物選択 -->
-                    <select v-model="postForm.animalTypeId" class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                    <select v-model="postForm.animalId" class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
                         <option disabled value=''>動物を選ぶ</option>
                         <option v-for="animal in animals" :key="animal.id" :value="animal.id">{{animal.name}}</option>
                     </select>
