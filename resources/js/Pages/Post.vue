@@ -37,7 +37,7 @@ watch(
     (animalTypeId, prevAnimalTypeId) => {
         // 文字の入れ替え
         // currentAnimalAvailableWords.value = props.animals[animalTypeId]['availableWords']; これだと文字が重複する挙動が何故か起こるので以下コードにする
-        currentAnimalAvailableWords.value = Array.from(new Set(props.animals[animalTypeId]['availableWords']));
+        currentAnimalAvailableWords.value = Array.from(new Set(props.animals.find(animal => animal.id == animalTypeId).words));
 
         // 投稿メッセージのクリア
         inputWordsArray.value = [];
