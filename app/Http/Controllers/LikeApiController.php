@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CoffeeR\UseCases\LikeUpsertAction;
-use App\Exceptions\NotFoundException;
+use App\Exceptions\PostNotFoundException;
 
 class LikeApiController extends Controller
 {
@@ -21,8 +21,8 @@ class LikeApiController extends Controller
         // いいね処理
         try{
             $likeUpsertAction($post_id);
-        }catch(NotFoundException $e){
-            return response($e->getMessage(), 404);
+        }catch(PostNotFoundException $e){
+            return response($e->getMessage(), 403);
         }
 
         response('', 200);        
