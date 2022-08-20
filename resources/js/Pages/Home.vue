@@ -37,7 +37,7 @@ defineProps({
             <PostNoneMessage v-if="posts.length == 0" />
 
             <!-- 背景色表示用padding -->
-            <div v-if="posts.length != 0" class="py-0.5 lg:px-0">
+            <div v-if="posts.length != 0" class="py-0.5 lg:px-0 lg:py-6">
 
                 <!-- 投稿 -->
                 <PostCard

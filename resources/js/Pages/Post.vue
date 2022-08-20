@@ -92,7 +92,7 @@ const submitPost = function(){
         <article class="lg:w-full lg:h-auto lg:mt-0">
             
             <!-- 投稿フォーム -->
-            <div class="flex bg-white rounded-xl border border-gray-200 shadow-md mx-2 mb-4 px-4 py-4 lg:mx-6 lg:mt-3 lg:mb-6 lg:px-8 lg:py-8">
+            <div class="flex bg-white rounded-xl border border-gray-200 shadow-md mx-2 mb-4 px-4 py-4 lg:mx-6 lg:mt-7 lg:px-8 lg:py-8">
                 <form @submit.prevent="submitPost" class="w-full m-4">
 
                     <!-- 動物選択 -->
@@ -102,7 +102,7 @@ const submitPost = function(){
                     </select>
 
                     <!-- 投稿メッセージ -->
-                    <textarea readonly ref="inputMessageTextArea" v-model="postForm.message" rows="3" class="resize-none block mt-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    <textarea readonly ref="inputMessageTextArea" v-model="postForm.message" rows="5" class="resize-none block mt-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
 
                     <!-- 動物言葉の入力IME -->
                     <!-- 動物言葉1文字ごとにボタンを配置し、押下されたら動物言葉をemitする -->
