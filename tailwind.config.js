@@ -21,4 +21,8 @@ module.exports = {
         require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
     ],
+
+    future: {
+        hoverOnlyWhenSupported: true,
+    },
 };
