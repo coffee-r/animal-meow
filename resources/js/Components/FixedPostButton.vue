@@ -5,6 +5,6 @@ import { Link } from '@inertiajs/inertia-vue3';
 <!-- スマホ用の投稿ボタン -->
 <template>
     <Link :href="route('post.create')">
-        <button class="fixed bottom-6 right-6 hover:opacity-50 w-14 h-14 lg:hidden"><img src="/images/post_add_icon.svg"></button>
+        <button class="fixed z-5 bottom-6 right-6 hover:opacity-50 w-14 h-14 lg:hidden"><img src="/images/post_add_icon.svg"></button>
     </Link>
 </template>
