@@ -143,7 +143,7 @@ const addLikeCount = async function(){
                 <span class="text-sm font-bold tracking-tight text-gray-900 dark:text-white">{{ user_name }}</span>
                 <button v-if="isSamePostUserAuthUser()" @click="openDropDownMenu()" class="post-card-drop-down bg-[url('/images/three_point_leader_menu_icon.svg')] ml-auto w-4 h-4 hover:opacity-50" />
                 <div v-if="isSamePostUserAuthUser()" class="post-card-drop-down relative">
-                    <div class="absolute z-10 top-4 right-0 w-44 bg-white rounded shadow dark:bg-gray-700" v-show="isOpenDropDownMenu">
+                    <div class="absolute z-5 top-0 right-16 w-32 bg-white rounded border border-gray-200 shadow-md" v-show="isOpenDropDownMenu">
                         <ul class="text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
                             <li class="text-red-600 hover:bg-gray-100">
                                 <form @submit.prevent="submitDeletePost">
