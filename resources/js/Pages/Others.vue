@@ -51,7 +51,7 @@ const submitWithdrawal = function(){
             <div class="py-0.5 lg:px-0 lg:py-6">
 
                 <!-- ご意見など -->
-                <div class="bg-white rounded-xl border border-gray-200 shadow-md mx-2 mb-4 px-4 py-4 lg:mx-6 lg:mt-1 lg:mb-6 lg:px-8 lg:py-8">
+                <div class="bg-white rounded-xl border border-gray-200 shadow-md mx-2 mt-1 mb-4 px-4 py-4 lg:mx-6 lg:mt-1 lg:mb-6 lg:px-8 lg:py-8">
                     <h2 class="font-bold text-2xl lg:text-3xl">ご要望や不具合報告など</h2>
 
                     <p class="mt-4">
