@@ -130,7 +130,7 @@ const addLikeCount = async function(){
 
 <template>
     <!-- アバター画像 | その他 で横に分割 -->
-    <div class="flex bg-white rounded-xl border border-gray-200 shadow-md mx-2 my-1 p-2">
+    <div class="flex bg-white rounded-xl border border-gray-200 shadow-md mx-2 my-1 p-2 lg:mx-6">
 
         <!-- アバター画像 -->
         <img class="w-12 h-12 rounded-full object-cover" :src=avatar_image_url />

@@ -19,6 +19,9 @@ const currentAnimalAvailableWords = ref([]);
 // ※ postForm.messageで絵文字を削除しようとすると文字化けする問題があったため、ユーザーの入力を一旦配列に入れます
 const inputWordsArray = ref([]);
 
+// 投稿メッセージのテキストエリア
+const inputMessageTextArea = ref(null)
+
 // 投稿フォーム
 const postForm = useForm({
     animalId: '',
@@ -53,12 +56,16 @@ const addWordToMessage = function(word){
     }
     inputWordsArray.value.push(word);
     postForm.message = inputWordsArray.value.join('');
+
+    inputMessageTextArea.value.focus()
 }
 
 // 投稿メッセージ末尾の文字を削除する
 const removeOneWordToMessage = function(){
     inputWordsArray.value.pop();
     postForm.message = inputWordsArray.value.join('');
+
+    inputMessageTextArea.value.focus()
 }
 
 // 投稿フォームを送信する
@@ -95,20 +102,22 @@ const submitPost = function(){
                     </select>
 
                     <!-- 投稿メッセージ -->
-                    <textarea readonly v-model="postForm.message" rows="3" class="resize-none block mt-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    <textarea readonly ref="inputMessageTextArea" v-model="postForm.message" rows="3" class="resize-none block mt-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
 
                     <!-- 動物言葉の入力IME -->
                     <!-- 動物言葉1文字ごとにボタンを配置し、押下されたら動物言葉をemitする -->
-                    <AnimalIME class="mt-2" v-bind:words="currentAnimalAvailableWords" @removeWordNotification="removeOneWordToMessage" @addWordNotification="addWordToMessage" />
+                    <AnimalIME class="mt-2" v-bind:words="currentAnimalAvailableWords" @addWordNotification="addWordToMessage" @addSpaceNotification="addWordToMessage" @removeWordNotification="removeOneWordToMessage" />
 
                     <!-- ツイート投稿オプション -->
                     <div class="flex items-center mt-8">
-                        <input v-model="postForm.withTweet" id="tweet-checkbox" type="checkbox" value="true" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2" >
-                        <label for="tweet-checkbox" class="ml-2 font-medium text-gray-900 dark:text-gray-300">Twitterにも投稿する</label>
+                        <input v-model="postForm.withTweet" id="tweet-checkbox" type="checkbox" value="true" class="w-6 h-6 text-gray-900 rounded border-gray-300 focus:ring-blue-500 focus:ring-2" >
+                        <label for="tweet-checkbox" class="ml-2 text-xl text-gray-900">Twitterにも投稿する</label>
                     </div>
 
                     <!-- 投稿ボタン -->
-                    <CustomButton type="submit" v-bind:disabled="postForm.processing || !isFilledPostForm">鳴く</CustomButton>
+                    <div class="mt-8 text-center lg:text-left">
+                        <CustomButton type="submit" v-bind:disabled="postForm.processing || !isFilledPostForm">鳴く</CustomButton>
+                    </div>
 
                 </form>
             </div>
