@@ -41,7 +41,7 @@ class UserUpsertWithTwitterAction
         if ($user) {
             // ユーザーの更新
             $user->name = $socialiteUser->getName();
-            $user->avatar_image_url = $socialiteUser->getAvatar();
+            $user->avatar_image_url = str_replace( "_normal.", "_bigger.", $socialiteUser->getAvatar());
             $user->update();
 
             // Twitterユーザーの更新
@@ -54,7 +54,7 @@ class UserUpsertWithTwitterAction
             // ユーザーの新規作成
             $user = new User();
             $user->name = $socialiteUser->getName();
-            $user->avatar_image_url = $socialiteUser->getAvatar();
+            $user->avatar_image_url = str_replace( "_normal.", "_bigger.", $socialiteUser->getAvatar());
             $user->save();
 
             // Twitterユーザーの新規作成
