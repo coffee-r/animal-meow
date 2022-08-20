@@ -90,36 +90,40 @@ const submitPost = function(){
 
         <!-- 投稿フォーム -->
         <article class="lg:w-full lg:h-auto lg:mt-0">
+
+            <!-- 背景色表示用padding -->
+            <div class="py-0.5 lg:px-0 lg:py-6">
             
-            <!-- 投稿フォーム -->
-            <div class="flex bg-white rounded-xl border border-gray-200 shadow-md mx-2 mb-4 px-4 py-4 lg:mx-6 lg:mt-7 lg:px-8 lg:py-8">
-                <form @submit.prevent="submitPost" class="w-full m-4">
+                <!-- 投稿フォーム -->
+                <div class="flex bg-white rounded-xl border border-gray-200 shadow-md mx-2 mb-4 px-4 py-4 lg:mx-6 lg:mt-1 lg:px-8 lg:py-8">
+                    <form @submit.prevent="submitPost" class="w-full m-4">
 
-                    <!-- 動物選択 -->
-                    <select v-model="postForm.animalId" class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                        <option disabled value=''>動物を選ぶ</option>
-                        <option v-for="animal in animals" :key="animal.id" :value="animal.id">{{animal.name}}</option>
-                    </select>
+                        <!-- 動物選択 -->
+                        <select v-model="postForm.animalId" class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                            <option disabled value=''>動物を選ぶ</option>
+                            <option v-for="animal in animals" :key="animal.id" :value="animal.id">{{animal.name}}</option>
+                        </select>
 
-                    <!-- 投稿メッセージ -->
-                    <textarea readonly ref="inputMessageTextArea" v-model="postForm.message" rows="5" class="resize-none block mt-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                        <!-- 投稿メッセージ -->
+                        <textarea readonly ref="inputMessageTextArea" v-model="postForm.message" rows="5" class="resize-none block mt-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
 
-                    <!-- 動物言葉の入力IME -->
-                    <!-- 動物言葉1文字ごとにボタンを配置し、押下されたら動物言葉をemitする -->
-                    <AnimalIME class="mt-2" v-bind:words="currentAnimalAvailableWords" @addWordNotification="addWordToMessage" @addSpaceNotification="addWordToMessage" @removeWordNotification="removeOneWordToMessage" />
+                        <!-- 動物言葉の入力IME -->
+                        <!-- 動物言葉1文字ごとにボタンを配置し、押下されたら動物言葉をemitする -->
+                        <AnimalIME class="mt-2" v-bind:words="currentAnimalAvailableWords" @addWordNotification="addWordToMessage" @addSpaceNotification="addWordToMessage" @removeWordNotification="removeOneWordToMessage" />
 
-                    <!-- ツイート投稿オプション -->
-                    <div class="flex items-center mt-8">
-                        <input v-model="postForm.withTweet" id="tweet-checkbox" type="checkbox" value="true" class="w-6 h-6 text-gray-900 rounded border-gray-300 focus:ring-blue-500 focus:ring-2" >
-                        <label for="tweet-checkbox" class="ml-2 text-xl text-gray-900">Twitterにも投稿する</label>
-                    </div>
+                        <!-- ツイート投稿オプション -->
+                        <div class="flex items-center mt-8">
+                            <input v-model="postForm.withTweet" id="tweet-checkbox" type="checkbox" value="true" class="w-6 h-6 text-gray-900 rounded border-gray-300 focus:ring-blue-500 focus:ring-2" >
+                            <label for="tweet-checkbox" class="ml-2 text-xl text-gray-900">Twitterにも投稿する</label>
+                        </div>
 
-                    <!-- 投稿ボタン -->
-                    <div class="mt-8 text-center lg:text-left">
-                        <CustomButton type="submit" v-bind:disabled="postForm.processing || !isFilledPostForm">鳴く</CustomButton>
-                    </div>
+                        <!-- 投稿ボタン -->
+                        <div class="mt-8 text-center lg:text-left">
+                            <CustomButton type="submit" v-bind:disabled="postForm.processing || !isFilledPostForm">鳴く</CustomButton>
+                        </div>
 
-                </form>
+                    </form>
+                </div>
             </div>
         </article>
     </main>

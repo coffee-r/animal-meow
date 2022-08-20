@@ -30,7 +30,7 @@ const isSelectedUrlPath = function(path){
         </div>
 
         <!-- モーダルのナビゲーション -->
-        <nav class="overflow-y-auto overflow-x-hidden fixed z-10 top-0 left-0 w-full h-full bg-gray-900/25 lg:hidden" @click.self="showModalMenu(false)" v-show="isOpenModalMenu">
+        <nav class="overflow-y-auto overflow-x-hidden fixed z-10 top-0 left-0 w-full h-screen bg-gray-900/25 lg:hidden" @click.self="showModalMenu(false)" v-show="isOpenModalMenu">
             <div class="text-center bg-white h-auto p-4 shadow-xl rounded-xl mt-10 mx-6">
                 <ul class="mt-12 flex flex-col gap-8">
                     <Link class="hover:text-gray-500" :href="route('home')"><li class="text-2xl" v-bind:class="{'font-bold':isSelectedUrlPath('/home') }">ホーム</li></Link>
