@@ -45,7 +45,7 @@ class TweetAction
         }
 
         // ツイートのタグ等を含めた文章を加工
-        $messageWithTag = $message . ' #' . config('app.name') . ' ' . config('app.url');
+        $messageWithTag = $message . "\r\n" . '#' . config('app.name') . ' ' . config('app.url');
 
         // ツイートする
         return $this->tweetRepository->tweet($messageWithTag);
