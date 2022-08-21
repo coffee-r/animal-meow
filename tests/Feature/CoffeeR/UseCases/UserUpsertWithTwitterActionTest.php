@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Mockery;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Crypt;
 
 
 class UserUpsertWithTwitterActionTest extends TestCase
@@ -70,10 +71,16 @@ class UserUpsertWithTwitterActionTest extends TestCase
         $this->assertDatabaseHas('twitter_users', [
             'twitter_id' => 'test_twitter_id',
             'nickname' => 'test_nickname',
-            'access_token' => 'test_access_token',
+            // 'access_token' => Crypt::encryptString('test_access_token'),
             'access_token_time_limit' => '2022-01-01 02:00:00',
-            'refresh_token' => 'test_refresh_token',
+            // 'refresh_token' => Crypt::encryptString('test_refresh_token'),
         ]);
+
+        // アクセストークンとリフレッシュトークンの検証
+        // ※Eloquentを介して暗号化/復号化しているためassertDatabaseHasだとうまく検証できなさそう
+        $twitterUser = TwitterUser::where('twitter_id', 'test_twitter_id')->first();
+        $this->assertEquals('test_access_token', $twitterUser->access_token);
+        $this->assertEquals('test_refresh_token', $twitterUser->refresh_token);
     }
 
     public function test_既存ユーザー更新()
@@ -85,21 +92,6 @@ class UserUpsertWithTwitterActionTest extends TestCase
             'avatar_image_url' => 'before'
         ]);
         $twitterUser = TwitterUser::factory()->create([
-            'twitter_id' => 'test_twitter_id',
-            'animal_meow_user_id' => $user->id,
-            'access_token' => 'before',
-            'access_token_time_limit' => '1999-01-01 00:00:00',
-            'refresh_token' => 'before'
-        ]);
-
-        // レコードがあることを一応確認
-        $this->assertDatabaseHas('users', [
-            'id' => $user->id,
-            'name' => 'before',
-            'avatar_image_url' => 'before'
-        ]);
-
-        $this->assertDatabaseHas('twitter_users', [
             'twitter_id' => 'test_twitter_id',
             'animal_meow_user_id' => $user->id,
             'access_token' => 'before',
@@ -121,9 +113,15 @@ class UserUpsertWithTwitterActionTest extends TestCase
         $this->assertDatabaseHas('twitter_users', [
             'twitter_id' => 'test_twitter_id',
             'nickname' => 'test_nickname',
-            'access_token' => 'test_access_token',
+            // 'access_token' => Crypt::encryptString('test_access_token'),
             'access_token_time_limit' => '2022-01-01 02:00:00',
-            'refresh_token' => 'test_refresh_token',
+            // 'refresh_token' => Crypt::encryptString('test_refresh_token'),
         ]);
+
+        // アクセストークンとリフレッシュトークンの検証
+        // ※Eloquentを介して暗号化/復号化しているためassertDatabaseHasだとうまく検証できなさそう
+        $twitterUser = TwitterUser::where('twitter_id', 'test_twitter_id')->first();
+        $this->assertEquals('test_access_token', $twitterUser->access_token);
+        $this->assertEquals('test_refresh_token', $twitterUser->refresh_token);
     }
 }

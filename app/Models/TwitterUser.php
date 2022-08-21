@@ -24,4 +24,9 @@ class TwitterUser extends Model
         'access_token_time_limit',
         'refresh_token',
     ];
+
+    protected $casts = [
+        'access_token' => 'encrypted',
+        'refresh_token' => 'encrypted',
+    ];
 }

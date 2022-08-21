@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('twitter_id')->primary();
             $table->unsignedBigInteger('animal_meow_user_id');
             $table->string('nickname');
-            $table->string('access_token');
+            $table->text('access_token');
             $table->timestamp('access_token_time_limit');
-            $table->string('refresh_token');
+            $table->text('refresh_token');
             $table->timestamps();
             $table->index('animal_meow_user_id', 'animal_meow_user_id_index');
             $table->foreign('animal_meow_user_id')->references('id')->on('users')->cascadeOnDelete();
