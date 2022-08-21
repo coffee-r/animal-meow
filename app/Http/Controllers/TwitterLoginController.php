@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\CoffeeR\UseCases\TwitterLoginAction;
 use App\CoffeeR\UseCases\UserUpsertWithTwitterAction;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
