@@ -17,9 +17,10 @@ class WithdrawalActionTest extends TestCase
     public function test_存在するユーザーを退会()
     {
         // ユーザーと投稿を作成
-        $user = User::factory()->create();
-        $twitterUser = TwitterUser::factory()->create(['animal_meow_user_id' => $user->id]);
-        $post = Post::factory()->create(['user_id' => $user->id]);
+        $user = User::factory()
+                    ->has(TwitterUser::factory()->count(1))
+                    ->has(Post::factory()->count(10))
+                    ->create();
 
         // 作成したユーザーをログインユーザーとする
         $this->actingAs($user);
