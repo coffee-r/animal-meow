@@ -18,7 +18,10 @@ class TwitterUser extends Model
      * @var array<int, string>
      */
     protected $hidden = [
+        'twitter_id',
+        'nickname',
         'access_token',
+        'access_token_time_limit',
         'refresh_token',
     ];
 }
