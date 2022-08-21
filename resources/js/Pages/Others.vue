@@ -71,6 +71,7 @@ const submitWithdrawal = function(){
                         <li>Docker</li>
                         <li>Laravel</li>
                         <li>PostgreSQL</li>
+                        <li>Redis</li>
                         <li>Vite</li>
                         <li>Vue.js</li>
                         <li>Inertia.js</li>
