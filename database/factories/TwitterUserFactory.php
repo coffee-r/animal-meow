@@ -18,11 +18,8 @@ class TwitterUserFactory extends Factory
      */
     public function definition()
     {
-        $user = User::inRandomOrder()->first();
-
         return [
             'twitter_id' => Str::random(30),
-            'animal_meow_user_id' => $user->id,
             'nickname' => Str::random(20),
             'access_token' => Str::random(50),
             'access_token_time_limit' => fake()->dateTimeBetween($startDate = '-2 year', $endDate = '+2 year'),

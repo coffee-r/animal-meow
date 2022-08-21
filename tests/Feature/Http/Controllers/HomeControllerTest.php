@@ -30,8 +30,9 @@ class HomeControllerTest extends TestCase
 
     public function test_投稿が101個の状態でのホームページの表示()
     {
-        $user = User::factory()->create();
-        $posts = Post::factory(101)->create();
+        $user = User::factory()
+                    ->has(Post::factory()->count(101))
+                    ->create();
         $this->actingAs($user);
 
         $response = $this->get(route('home'));
@@ -57,8 +58,9 @@ class HomeControllerTest extends TestCase
 
     public function test_自分の投稿が101個の状態での自分の投稿ページの表示()
     {
-        $user = User::factory()->create();
-        $posts = Post::factory(101)->create(['user_id' => $user->id]);
+        $user = User::factory()
+                    ->has(Post::factory()->count(101))
+                    ->create();
         $this->actingAs($user);
 
         $response = $this->get(route('me'));
@@ -71,8 +73,9 @@ class HomeControllerTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        $otherUser = User::factory()->create();
-        $posts = Post::factory(101)->create(['user_id' => $otherUser->id]);
+        $otherUser = User::factory()
+                    ->has(Post::factory()->count(101))
+                    ->create();
         
         $response = $this->get(route('me'));
         $response->assertInertia(fn (Assert $page) => $page->component('Home'));

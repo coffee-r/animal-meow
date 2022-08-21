@@ -18,8 +18,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
-            TwitterUserSeeder::class,
-            PostSeeder::class,
             LikeSeeder::class,
             AnimalSeeder::class,
         ]);

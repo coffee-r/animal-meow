@@ -28,8 +28,9 @@ class IndexControllerTest extends TestCase
 
     public function test_投稿が11個ある状態でのトップページの表示()
     {
-        $user = User::factory()->create();
-        $posts = Post::factory(11)->create();
+        $user = User::factory()
+                    ->has(Post::factory()->count(11))
+                    ->create();
 
         $response = $this->get(route('index'));
         $response->assertInertia(fn (Assert $page) => $page->component('Index'));

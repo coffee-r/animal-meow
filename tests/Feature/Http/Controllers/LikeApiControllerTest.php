@@ -13,9 +13,9 @@ class LikeApiControllerTest extends TestCase
 
     public function test_ゲストユーザーが投稿にいいね()
     {
-        // ユーザーと投稿を作成
-        $postUser = User::factory()->create();
-        $post = Post::factory()->create();
+        $post = Post::factory()
+                    ->for(User::factory()->create())
+                    ->create();
         
         $response = $this->postJson(route('post.like.upsert', $post->id));
         $response->assertStatus(401);
@@ -23,12 +23,12 @@ class LikeApiControllerTest extends TestCase
 
     public function test_投稿にいいね()
     {
-        // ユーザーと投稿を作成
-        $postUser = User::factory()->create();
-        $post = Post::factory()->create();
-
         $user = User::factory()->create();
         $this->actingAs($user);
+
+        $post = Post::factory()
+                    ->for($user)
+                    ->create();
         
         $response = $this->postJson(route('post.like.upsert', $post->id));
         $response->assertStatus(200);

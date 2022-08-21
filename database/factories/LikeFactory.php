@@ -18,12 +18,9 @@ class LikeFactory extends Factory
      */
     public function definition()
     {
-        $user = User::inRandomOrder()->first();
-        $post = Post::inRandomOrder()->first();
-
         return [
-            'user_id' => $user->id,
-            'post_id' => $post->id,
+            'user_id' => mt_rand(1, 99999999999999),
+            'post_id' => mt_rand(1, 99999999999999),
             'like_count' => mt_rand(0, 99999999999999),
         ];
     }
