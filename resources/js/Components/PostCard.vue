@@ -111,7 +111,7 @@ const addLikeCount = async function(){
     }
 
     // いいね追加APIをcallする
-    await axios.post(route('like.post', props.post_id))
+    await axios.post(route('post.like.upsert', props.post_id))
                .then(response => like_total_count_reactive.value += 1)
                .catch(error => {
                     if(error.response){

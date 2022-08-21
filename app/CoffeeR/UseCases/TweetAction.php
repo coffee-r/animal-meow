@@ -7,7 +7,6 @@ use App\CoffeeR\Domain\TweetRepositoryInterface;
 use App\CoffeeR\Domain\TwitterTokenRepositoryInterface;
 use Carbon\Carbon;
 use App\Models\TwitterUser;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 
 /**

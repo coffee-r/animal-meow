@@ -16,5 +16,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(function () {
     // いいね追加処理
-    Route::post('/likes/{post_id}', 'App\Http\Controllers\LikeApiController@upsert')->name('like.post');
+    Route::post('/posts/{post_id}/likes', 'App\Http\Controllers\LikeApiController@upsert')->name('post.like.upsert');
 });

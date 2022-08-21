@@ -28,6 +28,10 @@ class PostController extends Controller
         // 投稿に利用できる言葉を動物ごとに取得する
         $animals = Animal::all();
 
+        if($animals->isEmpty()){
+            throw new Exception();
+        }
+
         return Inertia::render('Post', [
             'animals' => $animals,
         ]);
@@ -43,10 +47,11 @@ class PostController extends Controller
     {
         // フォームバリデーション
         $validated = $request->validate([
-            'animalId' => 'required',
+            'animalId' => 'required|integer',
             'message' => 'required|max:100',
         ],[
             'animalId.required' => '動物を選択してください',
+            'animalId.integer' => '動物を正しく選択してください',
             'message.required' => '投稿メッセージを入力してください',
             'message.max' => '投稿メッセージは最大100文字までです',
         ]);
@@ -78,14 +83,14 @@ class PostController extends Controller
             $failMessages[] = $e->getMessage();
             
             // ホーム画面にリダイレクト
-            return redirect('/home')->with('failMessages', $failMessages);
+            return redirect(route('home'))->with('failMessages', $failMessages);
         }
 
         // コミット
         DB::commit();
 
         // ホーム画面にリダイレクト
-        return redirect('/home')->with('successMessages', $successMessages);
+        return redirect(route('home'))->with('successMessages', $successMessages);
     }
 
     /**
