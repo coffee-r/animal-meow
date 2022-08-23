@@ -37,6 +37,8 @@ jobs:
         node-version: 16
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.github_action', '.env');"
+    - name: Debug env
+      run: php artisan tinker --execute "var_dump(config('database.connections.pgsql'))"
     - name: Install Dependencies (composer)
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Generate key
