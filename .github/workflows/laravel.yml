@@ -17,7 +17,7 @@ jobs:
         env:
           POSTGRES_USER: 'github'
           POSTGRES_PASSWORD: 'password'
-          POSTGRES_DB: 'testing'
+          POSTGRES_DB: 'laravel_testing'
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -37,14 +37,12 @@ jobs:
         node-version: 16
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.github_action', '.env');"
-    - name: Install Dependencies
+    - name: Install Dependencies (composer)
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Generate key
       run: php artisan key:generate
-    - name: Install Dependencies Node
+    - name: Install Dependencies (npm)
       run: npm install
-    - name: Debug Node Modules
-      run: ls -la node_modules
     - name: Build Vite
       run: npm run build
     - name: Directory Permissions
