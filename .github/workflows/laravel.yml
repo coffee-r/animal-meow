@@ -38,7 +38,7 @@ jobs:
     - name: Generate key
       run: php artisan key:generate
     - name: Build vite
-      run: npm install & vite build
+      run: npm install & npm run build
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
     - name: Execute tests (Unit and Feature tests) via PHPUnit
