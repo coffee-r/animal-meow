@@ -41,8 +41,12 @@ jobs:
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Generate key
       run: php artisan key:generate
+    - name: Install Dependencies Node
+      run: npm install
+    - name: Debug Node Modules
+      run: ls -la node_modules
     - name: Build Vite
-      run: npm install & npm run build
+      run: npm run build
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
     - name: Execute tests (Unit and Feature tests) via PHPUnit
