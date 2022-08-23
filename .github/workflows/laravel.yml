@@ -17,7 +17,7 @@ jobs:
         env:
           POSTGRES_USER: 'github'
           POSTGRES_PASSWORD: 'password'
-          POSTGRES_DB: 'testing'
+          POSTGRES_DB: 'testing_miss'
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
