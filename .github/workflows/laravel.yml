@@ -17,7 +17,7 @@ jobs:
         env:
           POSTGRES_USER: 'github'
           POSTGRES_PASSWORD: 'password'
-          POSTGRES_DB: 'laravel_testing'
+          POSTGRES_DB: 'testing'
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -47,7 +47,5 @@ jobs:
       run: npm run build
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
-    - name: Debug env
-      run: php artisan tinker --execute "var_dump(config('database.connections.pgsql'))"
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       run: vendor/bin/phpunit
