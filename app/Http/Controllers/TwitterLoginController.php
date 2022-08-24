@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\CoffeeR\UseCases\UserUpsertWithTwitterAction;
+use Exception;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Twitterログインコントローラー
@@ -38,7 +40,12 @@ class TwitterLoginController extends Controller
     public function handleProviderCallback(UserUpsertWithTwitterAction $userUpsertWithTwitterAction)
     {
         // twitterのユーザーを取得
-        $twitterUserFromSocialite = Socialite::driver('twitter')->user();
+        try{
+            $twitterUserFromSocialite = Socialite::driver('twitter')->user();
+        }catch(Exception $e){
+            Log::error('nagatsuka');
+            Log::error($e);
+        }
 
         // twitterのユーザー情報を使って
         // ユーザーを新規登録・更新
