@@ -105,7 +105,7 @@ const submitPost = function(){
                         </select>
 
                         <!-- 投稿メッセージ -->
-                        <textarea readonly ref="inputMessageTextArea" v-model="postForm.message" rows="5" class="resize-none block mt-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                        <textarea readonly ref="inputMessageTextArea" v-model="postForm.message" rows="5" class="resize-none block mt-4 p-2.5 w-full text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
 
                         <!-- 動物言葉の入力IME -->
                         <!-- 動物言葉1文字ごとにボタンを配置し、押下されたら動物言葉をemitする -->
