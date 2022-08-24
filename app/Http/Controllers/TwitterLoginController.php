@@ -40,12 +40,7 @@ class TwitterLoginController extends Controller
     public function handleProviderCallback(UserUpsertWithTwitterAction $userUpsertWithTwitterAction)
     {
         // twitterのユーザーを取得
-        try{
-            $twitterUserFromSocialite = Socialite::driver('twitter')->user();
-        }catch(Exception $e){
-            Log::error('nagatsuka');
-            Log::error($e);
-        }
+        $twitterUserFromSocialite = Socialite::driver('twitter')->user();
 
         // twitterのユーザー情報を使って
         // ユーザーを新規登録・更新
