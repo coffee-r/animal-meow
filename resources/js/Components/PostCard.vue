@@ -145,7 +145,7 @@ const addLikeCount = async function(){
   transition: all 0.1s;
 }
 .transition-dropdown-menu-leave-active{
-  transition: all 0.075s;
+  transition: all 0.05s;
 }
 </style>
 
@@ -165,8 +165,7 @@ const addLikeCount = async function(){
                 <button v-if="isSamePostUserAuthUser()" @click="openDropDownMenu()" class="post-card-drop-down bg-[url('/images/three_point_leader_menu_icon.svg')] ml-auto w-4 h-4 hover:opacity-50 active:opacity-50" />
                 <div v-if="isSamePostUserAuthUser()" class="post-card-drop-down relative">
                     <transition name="transition-dropdown-menu">
-                    <div class="absolute z-5 top-0 right-12 w-32 bg-white rounded border border-gray-200 shadow-md" v-show="isOpenDropDownMenu">
-                        
+                        <div class="absolute z-5 top-0 right-12 w-32 bg-white rounded border border-gray-200 shadow-md" v-show="isOpenDropDownMenu">
                             <ul class="text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
                                 <li class="text-red-600 hover:bg-gray-100 active:bg-gray-100">
                                     <form @submit.prevent="submitDeletePost">
@@ -174,8 +173,7 @@ const addLikeCount = async function(){
                                     </form>
                                 </li>
                             </ul>
-                        
-                    </div>
+                        </div>
                     </transition>
                 </div>
             </div>
@@ -185,8 +183,8 @@ const addLikeCount = async function(){
 
             <!-- いいね数 | 投稿時間 で横に分割 -->
             <div class="flex justify-start mt-1">
-                <button class="bg-[url('/images/like_icon.svg')] hover:opacity-50 active:bg-[url('/images/like_icon_hover.svg')] active:opacity-100 w-5 h-5 " @click="addLikeCount" />
-                <div class="ml-1 text-sm hover:opacity-50 active:opacity-50" @click="addLikeCount">{{ like_total_count_reactive }}</div>
+                <button v-bind:id="'like-button-'+post_id" class="bg-[url('/images/like_icon.svg')] hover:bg-[url('/images/like_icon_hover.svg')] active:bg-[url('/images/like_icon_hover.svg')] active:opacity-50 w-5 h-5 " @click="addLikeCount" />
+                <label v-bind:for="'like-button-'+post_id" class="ml-1 text-sm hover:opacity-50 active:opacity-50">{{ like_total_count_reactive }}</label>
                 <p class="ml-auto text-sm text-gray-400">{{ postCreatedAt() }}</p>
             </div>
         </div>
