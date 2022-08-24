@@ -15,6 +15,8 @@ class AnimalSeeder extends Seeder
      */
     public function run()
     {
+        Animal::truncate();
+        
         $animals = [
             [
                 'id' => 1,
