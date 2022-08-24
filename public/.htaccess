@@ -6,7 +6,7 @@ Deny from all
 Satisfy Any
 
 # マッチしたホストを許可する
-SetEnvIf HOST "^(animal-meow\.com|127\.0\.0\.1|localhost)$" allowedHost
+SetEnvIf HOST "^(dummy-animal-meow\.com|127\.0\.0\.1|localhost)$" allowedHost
 Allow from env=allowedHost
 
 AuthUserFile /app/.htpasswd
