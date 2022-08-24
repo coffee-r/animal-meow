@@ -39,8 +39,14 @@ class TwitterLoginController extends Controller
      */
     public function handleProviderCallback(UserUpsertWithTwitterAction $userUpsertWithTwitterAction)
     {
-        // twitterのユーザーを取得
-        $twitterUserFromSocialite = Socialite::driver('twitter')->user();
+        try{
+            // twitterのユーザーを取得
+            $twitterUserFromSocialite = Socialite::driver('twitter')->user();
+        }catch(Exception $e){
+            Log::error($e);
+            return redirect(route('index'))->with('failMessages', ['何からの理由でログインに失敗しました。お手数ですがもう一度お試しください。']);
+        }
+        
 
         // twitterのユーザー情報を使って
         // ユーザーを新規登録・更新
@@ -50,6 +56,6 @@ class TwitterLoginController extends Controller
         Auth::login($user);
 
         // ホーム画面にリダイレクト
-        return redirect('/home')->with('successMessages', ['ログインしました。']);
+        return redirect(route('home'))->with('successMessages', ['ログインしました。']);
     }
 }

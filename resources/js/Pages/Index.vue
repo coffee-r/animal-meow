@@ -4,6 +4,8 @@ import CustomButton from "@/Components/CustomButton.vue";
 import PostCard from "@/Components/PostCard.vue";
 import PostNoneMessage from "@/Components/PostNoneMessage.vue";
 import FlashSuccessMessages from "@/Components/FlashSuccessMessages.vue";
+import FlashFailMessages from "@/Components/FlashFailMessages.vue";
+
 
 defineProps({
     posts: Array,
@@ -13,6 +15,9 @@ defineProps({
 <template>
     <!-- ログアウトの通知 -->
     <FlashSuccessMessages />
+
+    <!-- ログイン失敗の通知 -->
+    <FlashFailMessages />
 
     <!-- PCのみ2カラム構成のレイアウトにする -->
     <main class="lg:flex">
