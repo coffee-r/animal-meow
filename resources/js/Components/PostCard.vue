@@ -158,9 +158,9 @@ const addLikeCount = async function(){
             <!-- 投稿文章 -->
             <p class="text-sm text-gray-700">{{ message }}</p>
 
-            <!-- いいね数 -->
-            <div class="flex justify-start">
-                <button class="bg-[url('/images/like_icon.svg')] w-5 h-5 hover:opacity-50 active:opacity-50" @click="addLikeCount" />
+            <!-- いいね数 | 投稿時間 で横に分割 -->
+            <div class="flex justify-start mt-1">
+                <button class="bg-[url('/images/like_icon.svg')] hover:opacity-50 active:bg-[url('/images/like_icon_hover.svg')] active:opacity-100 w-5 h-5 " @click="addLikeCount" />
                 <div class="ml-1 text-sm">{{ like_total_count_reactive }}</div>
                 <p class="ml-auto text-sm text-gray-400">{{ postCreatedAt() }}</p>
             </div>
