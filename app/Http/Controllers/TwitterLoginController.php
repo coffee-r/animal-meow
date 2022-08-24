@@ -45,7 +45,7 @@ class TwitterLoginController extends Controller
             $twitterUserFromSocialite = Socialite::driver('twitter')->user();
         }catch(ClientException $e){
             Log::error('twitter callback exception');
-            Log::error($e->getRequest());   
+            Log::error(Psr7\Message::toString($e->getRequest()));   
             Log::error($e);
             return redirect(route('index'))->with('failMessages', ['何からの理由でログインに失敗しました。お手数ですがもう一度お試しください。']);
         }
