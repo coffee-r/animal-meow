@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CoffeeR\UseCases\UserUpsertWithTwitterAction;
 use Exception;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Psr7\Message;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -45,7 +46,7 @@ class TwitterLoginController extends Controller
             $twitterUserFromSocialite = Socialite::driver('twitter')->user();
         }catch(ClientException $e){
             Log::error('twitter callback exception');
-            Log::error(Psr7\Message::toString($e->getRequest()));   
+            Log::error(Message::toString($e->getRequest()));   
             Log::error($e);
             return redirect(route('index'))->with('failMessages', ['何からの理由でログインに失敗しました。お手数ですがもう一度お試しください。']);
         }
