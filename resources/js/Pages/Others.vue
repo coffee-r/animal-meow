@@ -67,6 +67,7 @@ const submitWithdrawal = function(){
             
                     <ul class="list-disc list-outside pl-5 mt-4">
                         <li>Twitter</li>
+                        <li>Github</li>
                         <li>Heroku</li>
                         <li>Docker</li>
                         <li>Laravel</li>
