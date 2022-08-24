@@ -105,7 +105,7 @@ const submitPost = function(){
                         </select>
 
                         <!-- 投稿メッセージ -->
-                        <textarea readonly ref="inputMessageTextArea" v-model="postForm.message" rows="5" class="resize-none block mt-4 p-2.5 w-full text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                        <textarea readonly ref="inputMessageTextArea" v-model="postForm.message" rows="4" class="resize-none block mt-4 p-2.5 w-full text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
 
                         <!-- 動物言葉の入力IME -->
                         <!-- 動物言葉1文字ごとにボタンを配置し、押下されたら動物言葉をemitする -->
@@ -116,6 +116,7 @@ const submitPost = function(){
                             <input v-model="postForm.withTweet" id="tweet-checkbox" type="checkbox" value="true" class="w-6 h-6 text-gray-900 rounded border-gray-300 focus:ring-blue-500 focus:ring-2" >
                             <label for="tweet-checkbox" class="ml-2 text-xl text-gray-900">Twitterにも投稿する</label>
                         </div>
+                        <label for="tweet-checkbox" class="text-xs ml-6">「{{$page.props.auth.user.name}}」のアカウントで投稿します</label>
 
                         <!-- 投稿ボタン -->
                         <div class="mt-8 text-center lg:text-left">
