@@ -44,6 +44,7 @@ class TwitterLoginController extends Controller
         try{
             // twitterのユーザーを取得
             $twitterUserFromSocialite = Socialite::driver('twitter')->user();
+            Log::error('twitter socialite success token' . $twitterUserFromSocialite->token);
         }catch(ClientException $e){
             Log::error('twitter callback exception');
             Log::error(Message::toString($e->getRequest()));   
