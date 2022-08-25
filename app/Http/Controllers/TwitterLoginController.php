@@ -45,42 +45,47 @@ class TwitterLoginController extends Controller
     public function handleProviderCallback(Request $request, UserUpsertWithTwitterAction $userUpsertWithTwitterAction)
     {
         // アクセストークンを取得
-        $token = Socialite::driver('twitter')->getAccessTokenResponse($request->input('code'));
-        echo '<pre>';
-        var_dump($token);
-        echo '</pre><br/><br/><pre>';
+        // $token = Socialite::driver('twitter')->getAccessTokenResponse($request->input('code'));
+        // echo '<pre>';
+        // var_dump($token);
+        // echo '</pre><br/><br/><pre>';
         
-        $client = new Client();
-        $user = $client->get('https://api.twitter.com/2/users/me', [
-            'headers' => ['Authorization' => 'Bearer '.$token['access_token']],
-            'query' => ['user.fields' => 'profile_image_url'],
-            'debug' => true
-        ]);
-        echo '<br/><br/>';
-        var_dump($user);
-        echo '</pre><br/><br/><pre>';
-        exit();
+        // $client = new Client();
+        // $user = $client->get('https://api.twitter.com/2/users/me', [
+        //     'headers' => ['Authorization' => 'Bearer '.$token['access_token']],
+        //     'query' => ['user.fields' => 'profile_image_url'],
+        //     'debug' => true
+        // ]);
+        // echo '<br/><br/>';
+        // var_dump($user);
+        // echo '</pre><br/><br/><pre>';
+        // exit();
 
+
+        // try{
+        //     // twitterのユーザーを取得
+        //     $twitterUserFromSocialite = Socialite::driver('twitter')->user();
+        //     Log::error('twitter socialite success token' . $twitterUserFromSocialite->token);
+        // }catch(ClientException $e){
+        //     Log::error('twitter callback exception');
+        //     Log::error(Message::toString($e->getRequest()));   
+        //     Log::error($e);
+
+        //     return redirect(route('index'))->with('failMessages', ['何からの理由でログインに失敗しました。お手数ですがもう一度お試しください。']);
+        // }
+        // catch(Exception $e){
+        //     Log::error($e);
+        //     return redirect(route('index'))->with('failMessages', ['何からの理由でログインに失敗しました。お手数ですがもう一度お試しください。']);
+        // }
 
         try{
             // twitterのユーザーを取得
             $twitterUserFromSocialite = Socialite::driver('twitter')->user();
-            Log::error('twitter socialite success token' . $twitterUserFromSocialite->token);
-        }catch(ClientException $e){
-            Log::error('twitter callback exception');
-            Log::error(Message::toString($e->getRequest()));   
-            Log::error($e);
-
-
-
-
-            return redirect(route('index'))->with('failMessages', ['何からの理由でログインに失敗しました。お手数ですがもう一度お試しください。']);
         }
         catch(Exception $e){
             Log::error($e);
             return redirect(route('index'))->with('failMessages', ['何からの理由でログインに失敗しました。お手数ですがもう一度お試しください。']);
         }
-        
 
         // twitterのユーザー情報を使って
         // ユーザーを新規登録・更新
