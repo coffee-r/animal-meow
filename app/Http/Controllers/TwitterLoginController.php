@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\CoffeeR\UseCases\UserUpsertWithTwitterAction;
 use Exception;
+use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Message;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
+
 
 /**
  * Twitterログインコントローラー
@@ -39,8 +42,26 @@ class TwitterLoginController extends Controller
      *
      * @return void
      */
-    public function handleProviderCallback(UserUpsertWithTwitterAction $userUpsertWithTwitterAction)
+    public function handleProviderCallback(Request $request, UserUpsertWithTwitterAction $userUpsertWithTwitterAction)
     {
+        // アクセストークンを取得
+        $token = Socialite::driver('twitter')->getAccessTokenResponse($request->input('code'));
+        echo '<pre>';
+        var_dump($token);
+        echo '</pre><br/><br/><pre>';
+        
+        $client = new Client();
+        $user = $client->get('https://api.twitter.com/2/users/me', [
+            'headers' => ['Authorization' => 'Bearer '.$token['access_token']],
+            'query' => ['user.fields' => 'profile_image_url'],
+            'debug' => true
+        ]);
+        echo '<br/><br/>';
+        var_dump($user);
+        echo '</pre><br/><br/><pre>';
+        exit();
+
+
         try{
             // twitterのユーザーを取得
             $twitterUserFromSocialite = Socialite::driver('twitter')->user();
@@ -49,6 +70,10 @@ class TwitterLoginController extends Controller
             Log::error('twitter callback exception');
             Log::error(Message::toString($e->getRequest()));   
             Log::error($e);
+
+
+
+
             return redirect(route('index'))->with('failMessages', ['何からの理由でログインに失敗しました。お手数ですがもう一度お試しください。']);
         }
         catch(Exception $e){
