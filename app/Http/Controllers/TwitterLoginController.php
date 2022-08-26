@@ -32,7 +32,7 @@ class TwitterLoginController extends Controller
         // users.readとtweet.readがSocialite内部でデフォルト指定されている
         // tweet.writeはツイートする際に必要で、offline.accessはリフレッシュトークンを使用するのに必要
         return Socialite::driver('twitter')
-                        ->scopes(['tweet.write', 'offline.access'])
+                        //->scopes(['tweet.write', 'offline.access'])
                         ->redirect();
     }
 
@@ -61,22 +61,34 @@ class TwitterLoginController extends Controller
         // echo '</pre><br/><br/><pre>';
         // exit();
 
-
         try{
             // twitterのユーザーを取得
             $twitterUserFromSocialite = Socialite::driver('twitter')->user();
-            Log::error('twitter socialite success token' . $twitterUserFromSocialite->token);
+            echo '<pre>';
+            var_dump($twitterUserFromSocialite);
+            echo '</pre><br/><br/><pre>';
         }catch(ClientException $e){
-            Log::error('twitter callback exception');
-            Log::error(Message::toString($e->getRequest()));   
-            Log::error($e);
+            echo 'error <br/><br/>';
+            var_dump(Message::toString($e->getRequest()));
+            echo '</pre><br/><br/><pre>';
+        }
+        exit();
 
-            return redirect(route('index'))->with('failMessages', ['何からの理由でログインに失敗しました。お手数ですがもう一度お試しください。']);
-        }
-        catch(Exception $e){
-            Log::error($e);
-            return redirect(route('index'))->with('failMessages', ['何からの理由でログインに失敗しました。お手数ですがもう一度お試しください。']);
-        }
+        // try{
+        //     // twitterのユーザーを取得
+        //     $twitterUserFromSocialite = Socialite::driver('twitter')->user();
+        //     Log::error('twitter socialite success token' . $twitterUserFromSocialite->token);
+        // }catch(ClientException $e){
+        //     Log::error('twitter callback exception');
+        //     Log::error(Message::toString($e->getRequest()));   
+        //     Log::error($e);
+
+        //     return redirect(route('index'))->with('failMessages', ['何からの理由でログインに失敗しました。お手数ですがもう一度お試しください。']);
+        // }
+        // catch(Exception $e){
+        //     Log::error($e);
+        //     return redirect(route('index'))->with('failMessages', ['何からの理由でログインに失敗しました。お手数ですがもう一度お試しください。']);
+        // }
 
         // try{
         //     // twitterのユーザーを取得
