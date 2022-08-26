@@ -45,21 +45,21 @@ class TwitterLoginController extends Controller
     public function handleProviderCallback(Request $request, UserUpsertWithTwitterAction $userUpsertWithTwitterAction)
     {
         // アクセストークンを取得
-        // $token = Socialite::driver('twitter')->getAccessTokenResponse($request->input('code'));
-        // echo '<pre>';
-        // var_dump($token);
-        // echo '</pre><br/><br/><pre>';
+        $token = Socialite::driver('twitter')->getAccessTokenResponse($request->input('code'));
+        echo '<pre>';
+        var_dump($token);
+        echo '</pre><br/><br/><pre>';
         
-        // $client = new Client();
-        // $user = $client->get('https://api.twitter.com/2/users/me', [
-        //     'headers' => ['Authorization' => 'Bearer '.$token['access_token']],
-        //     'query' => ['user.fields' => 'profile_image_url'],
-        //     'debug' => true
-        // ]);
-        // echo '<br/><br/>';
-        // var_dump($user);
-        // echo '</pre><br/><br/><pre>';
-        // exit();
+        $client = new Client();
+        $user = $client->get('https://api.twitter.com/2/users/me', [
+            'headers' => ['Authorization' => 'Bearer '.$token['access_token']],
+            'query' => ['user.fields' => 'profile_image_url'],
+            'debug' => true
+        ]);
+        echo '<br/><br/>';
+        var_dump($user);
+        echo '</pre><br/><br/><pre>';
+        exit();
 
 
         try{
