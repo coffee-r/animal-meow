@@ -9,7 +9,7 @@ Satisfy Any
 SetEnvIf HOST "^(animal-meow\.com|127\.0\.0\.1|localhost)$" allowedHost
 Allow from env=allowedHost
 
-AuthUserFile ../.htpasswd
+AuthUserFile /var/www/html/.htpasswd
 AuthType Basic
 AuthName "Restricted Access"
 Require valid-user
