@@ -14,7 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->group(function () {
-    // いいね追加処理
-    Route::post('/posts/{post_id}/likes', 'App\Http\Controllers\LikeApiController@upsert')->name('post.like.upsert');
+// テスト環境にだけbasic認証をかける
+Route::group(['middleware' => 'auth.basic.custom'], function() {
+
+    Route::middleware('auth:sanctum')->group(function () {
+        // いいね追加処理
+        Route::post('/posts/{post_id}/likes', 'App\Http\Controllers\LikeApiController@upsert')->name('post.like.upsert');
+    });
+    
 });
