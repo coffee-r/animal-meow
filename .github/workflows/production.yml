@@ -6,11 +6,12 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN_PRODUCTION }}
+
 jobs:
   laravel-tests:
-
     runs-on: ubuntu-latest
-
     services:
       postgres:
         image: postgres:14
@@ -49,3 +50,11 @@ jobs:
       run: chmod -R 777 storage bootstrap/cache
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       run: vendor/bin/phpunit
+  
+  deploy:
+      name: Deploy app
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: superfly/flyctl-actions/setup-flyctl@master
+        - run: flyctl deploy --remote-only --config fly_production.toml
