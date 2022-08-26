@@ -70,7 +70,7 @@ class TwitterLoginController extends Controller
             echo 'twitter callback exception';
             echo (Message::toString($e->getRequest()));   
             Log::error($e);
-
+exit();
             return redirect(route('index'))->with('failMessages', ['何からの理由でログインに失敗しました。お手数ですがもう一度お試しください。']);
         }
         catch(Exception $e){
