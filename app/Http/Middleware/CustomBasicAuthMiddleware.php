@@ -18,12 +18,12 @@ class CustomBasicAuthMiddleware
     {
         // 本番の環境とローカルの開発環境はbasic認証させない
         $allowSiteUrls = [
-            'http://localhost',
-            'http://127.0.0.1',
-            'https://animal-meow.com'
+            'localhost',
+            '127.0.0.1',
+            'animal-meow.com'
         ];
 
-        if(in_array($request->getBaseUrl(), $allowSiteUrls, true) == false){
+        if(in_array($request->getHost(), $allowSiteUrls) == true){
             return $next($request);   
         }
 
