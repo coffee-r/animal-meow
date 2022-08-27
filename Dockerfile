@@ -9,6 +9,8 @@ FROM serversideup/php:${PHP_VERSION}-fpm-nginx as base
 
 LABEL fly_launch_runtime="laravel"
 
+RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
 RUN apt-get update && apt-get install -y \
     git curl zip unzip rsync ca-certificates vim htop cron \
     php${DOCKER_VERSION}-pgsql php${PHP_VERSION}-bcmath \
