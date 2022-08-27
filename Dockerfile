@@ -57,7 +57,9 @@ RUN mkdir /app
 RUN mkdir -p  /app
 WORKDIR /app
 COPY . .
-COPY --from=base /var/www/html/vendor ./vendor
+
+# for resolve vendor/tightenco/ziggy/dist/vue.m from resources/js/app.js
+COPY --from=base /var/www/html/vendor ./vendor 
 
 # Use yarn or npm depending on what type of
 # lock file we might find. Defaults to
