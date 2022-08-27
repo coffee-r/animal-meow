@@ -13,6 +13,7 @@ use App\Models\Post;
 use App\Models\Animal;
 use App\CoffeeR\UseCases\PostStoreAction;
 use App\CoffeeR\UseCases\TweetAction;
+use App\Exceptions\PostStoreException;
 use App\Exceptions\TwitterClientException;
 use Exception;
 
@@ -76,7 +77,10 @@ class PostController extends Controller
                 $tweet = $tweetAction($request->input('message'));
                 $successMessages[] = "<a class='underline' href='".$tweet->url."' target='_blank'>Twitter</a>に投稿しました。";
             }
-        }catch(TwitterClientException $e){
+        }catch(TwitterClientException | PostStoreException $e){
+            // エラーログ記録
+            Log::error($e);
+
             // フラッシュメッセージ設定
             $failMessages = [];
             $failMessages[] = "投稿に失敗しました。";
