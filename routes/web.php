@@ -71,7 +71,8 @@ Route::group(['middleware' => 'auth.basic.custom'], function() {
 
     // 利用規約
     Route::get('/terms', function () {
-        return Inertia::render('Terms');
+        throw new \Exception('exception test');
+        // return Inertia::render('Terms');
     })->name('terms');
 
     // プライバシーポリシー
