@@ -1,6 +1,6 @@
 # fly.toml file generated for animal-meow-staging on 2022-08-26T22:42:42+09:00
 
-app = "animal-meow-staging"
+app = "web-animal-meow-staging"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
