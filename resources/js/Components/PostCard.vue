@@ -43,7 +43,7 @@ const like_total_count_reactive = ref(props.like_total_count);
 // 投稿時刻を加工する
 const postCreatedAt = function(){
     const nowDate = new Date();
-    const postDate = new Date(props.post_created_at);
+    const postDate = new Date(props.post_created_at.replace(/-/g,"/"));
     const diffSeconds = (nowDate - postDate) / 1000;
 
     // 投稿時刻が現在時刻の60秒前は秒表示
