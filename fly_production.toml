@@ -11,10 +11,15 @@ processes = []
     PHP_VERSION = "8.1"
 
 [env]
+  APP_NAME = "あにまるにゃ〜ん"
   APP_ENV = "production"
+  APP_URL = "https://animal-meow.com"
   LOG_CHANNEL = "stderr"
   LOG_LEVEL = "info"
   LOG_STDERR_FORMATTER = "Monolog\\Formatter\\JsonFormatter"
+  DB_CONNECTION = "pgsql"
+  SESSION_DRIVER = "redis"
+  SESSION_LIFETIME = 120
 
 [experimental]
   allowed_public_ports = []
