@@ -13,6 +13,7 @@
         <meta property="og:url" content="{{ config('app.url') }}">
         <meta name="twitter:card" content="summary">
         <meta name="twitter:image" content="{{ config('app.url') }}/images/ogp_summary.png">
+        <meta name="twitter:description" content="人間社会に疲れた人が作った、動物の言葉でしか呟けないSNS">
 
         <title inertia>{{ config('app.name') }}</title>
 
