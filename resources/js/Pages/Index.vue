@@ -3,6 +3,8 @@ import { Link } from "@inertiajs/inertia-vue3";
 import CustomButton from "@/Components/CustomButton.vue";
 import PostCard from "@/Components/PostCard.vue";
 import PostNoneMessage from "@/Components/PostNoneMessage.vue";
+import FlashSuccessMessages from "@/Components/FlashSuccessMessages.vue";
+import FlashFailMessages from "@/Components/FlashFailMessages.vue";
 
 
 defineProps({
@@ -12,22 +14,10 @@ defineProps({
 
 <template>
     <!-- ログアウトの通知 -->
-    <div v-if="$page.props.flash.successMessages">
-        <ul class="list-disc list-outside pl-8 p-4 text-sm text-green-700 bg-green-100 dark:bg-green-200 dark:text-green-800" role="alert">
-            <li v-for="message in $page.props.flash.successMessages" :key="message" >
-                <span v-html="message" class="font-bold"></span> 
-            </li>
-        </ul>
-    </div>
+    <FlashSuccessMessages />
 
     <!-- ログイン失敗の通知 -->
-    <div v-if="$page.props.flash.failMessages">
-        <ul class="list-disc list-outside pl-8 p-4 text-sm text-red-700 bg-red-100 dark:bg-red-200 dark:text-red-800" role="alert">
-            <li v-for="message in $page.props.flash.failMessages" :key="message" >
-                <span v-html="message" class="font-bold"></span> 
-            </li>
-        </ul>
-    </div>
+    <FlashFailMessages />
 
     <!-- PCのみ2カラム構成のレイアウトにする -->
     <main class="lg:flex">
@@ -57,9 +47,7 @@ defineProps({
                 <!-- ログインボタン -->
                 <div class="text-center py-12">
                     <a :href="route('login.twitter')">
-                        <button type="button" class="bg-gray-900 hover:bg-gray-500 active:bg-gray-500 text-white font-bold py-3 px-9 rounded-full text-xl lg:py-4 lg:px-12 lg:text-2xl">
-                            Twitterでログイン
-                        </button>
+                        <CustomButton>Twitterでログイン</CustomButton>
                     </a>
                     <div class="mt-3 text-xs">
                         <Link class="hover:text-gray-500 active:text-gray-500" :href="route('terms')">利用規約</Link>・<Link class="hover:text-gray-500 active:text-gray-500" :href="route('privacy')">プライバシーポリシー</Link>に<br/>
