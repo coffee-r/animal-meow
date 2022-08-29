@@ -3,8 +3,6 @@ name: Laravel
 on:
   push:
     branches: [ "staging" ]
-  pull_request:
-    branches: [ "staging" ]
 
 env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
