@@ -26,7 +26,6 @@ const inputMessageTextArea = ref(null)
 const postForm = useForm({
     animalId: '',
     message: '',
-    withTweet: null,
 });
 
 
@@ -111,12 +110,13 @@ const submitPost = function(){
                         <!-- 動物言葉1文字ごとにボタンを配置し、押下されたら動物言葉をemitする -->
                         <AnimalIME class="mt-2" v-bind:words="currentAnimalAvailableWords" @addWordNotification="addWordToMessage" @addSpaceNotification="addWordToMessage" @removeWordNotification="removeOneWordToMessage" />
 
-                        <!-- ツイート投稿オプション -->
+                        <!-- ツイート投稿オプション TwitterAPI有料化のため廃止
                         <div class="flex items-center mt-8">
                             <input v-model="postForm.withTweet" id="tweet-checkbox" type="checkbox" value="true" class="w-6 h-6 text-gray-900 rounded border-gray-300 focus:ring-blue-500 focus:ring-2" >
                             <label for="tweet-checkbox" class="ml-2 text-xl text-gray-900">Twitterにも投稿する</label>
                         </div>
                         <label for="tweet-checkbox" class="block text-xs ml-8">{{$page.props.auth.user.name}} のアカウントで投稿します</label>
+                        -->
 
                         <!-- 投稿ボタン -->
                         <div class="mt-8 text-center lg:text-left">
