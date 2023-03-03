@@ -79,6 +79,11 @@ Route::group(['middleware' => 'auth.basic.custom'], function() {
         return Inertia::render('Privacy');
     })->name('privacy');
 
+    // pgsqlのデバッグ
+    Route::get('/phpinfo', function(){
+        phpinfo();
+    })->name('phpinfo');
+
 });
 
 // Laravel Breeze が用意してくれているコントローラーのルーティング
