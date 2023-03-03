@@ -7,18 +7,16 @@ ARG PHP_VERSION=8.1
 ARG NODE_VERSION=14
 FROM serversideup/php:${PHP_VERSION}-fpm-nginx-v1.5.0 as base
 
-# PHP_VERSION needs to be repeated here
-# See https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact
-ARG PHP_VERSION
-
 LABEL fly_launch_runtime="laravel"
+
+RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 RUN apt-get update && apt-get install -y \
     git curl zip unzip rsync ca-certificates vim htop cron \
-    php${PHP_VERSION}-pgsql php${PHP_VERSION}-bcmath \
-    php${PHP_VERSION}-swoole php${PHP_VERSION}-xml php${PHP_VERSION}-mbstring \
+    php${DOCKER_VERSION}-pgsql php${PHP_VERSION}-bcmath \
+    php${DOCKER_VERSION}-swoole php${PHP_VERSION}-xml php${PHP_VERSION}-mbstring \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
 
 WORKDIR /var/www/html
 # copy application code, skipping files based on .dockerignore
@@ -31,23 +29,23 @@ RUN composer install --optimize-autoloader --no-dev \
     && sed -i 's/protected \$proxies/protected \$proxies = "*"/g' app/Http/Middleware/TrustProxies.php \
     && echo "MAILTO=\"\"\n* * * * * webuser /usr/bin/php /var/www/html/artisan schedule:run" > /etc/cron.d/laravel \
     && rm -rf /etc/cont-init.d/* \
-    && cp .fly/nginx-websockets.conf /etc/nginx/conf.d/websockets.conf \
-    && cp .fly/entrypoint.sh /entrypoint \
+    && cp docker/nginx-websockets.conf /etc/nginx/conf.d/websockets.conf \
+    && cp docker/entrypoint.sh /entrypoint \
     && chmod +x /entrypoint
 
 # If we're using Octane...
 RUN if grep -Fq "laravel/octane" /var/www/html/composer.json; then \
         rm -rf /etc/services.d/php-fpm; \
         if grep -Fq "spiral/roadrunner" /var/www/html/composer.json; then \
-            mv .fly/octane-rr /etc/services.d/octane; \
+            mv docker/octane-rr /etc/services.d/octane; \
             if [ -f ./vendor/bin/rr ]; then ./vendor/bin/rr get-binary; fi; \
             rm -f .rr.yaml; \
         else \
-            mv .fly/octane-swoole /etc/services.d/octane; \
+            mv docker/octane-swoole /etc/services.d/octane; \
         fi; \
-        cp .fly/nginx-default-swoole /etc/nginx/sites-available/default; \
+        cp docker/nginx-default-swoole /etc/nginx/sites-available/default; \
     else \
-        cp .fly/nginx-default /etc/nginx/sites-available/default; \
+        cp docker/nginx-default /etc/nginx/sites-available/default; \
     fi
 
 # Multi-stage build: Build static assets
@@ -59,7 +57,9 @@ RUN mkdir /app
 RUN mkdir -p  /app
 WORKDIR /app
 COPY . .
-COPY --from=base /var/www/html/vendor /app/vendor
+
+# for resolve vendor/tightenco/ziggy/dist/vue.m from resources/js/app.js
+COPY --from=base /var/www/html/vendor ./vendor 
 
 # Use yarn or npm depending on what type of
 # lock file we might find. Defaults to
@@ -97,3 +97,5 @@ RUN rsync -ar /var/www/html/public-npm/ /var/www/html/public/ \
 EXPOSE 8080
 
 ENTRYPOINT ["/entrypoint"]
+
+RUN cat /etc/php/8.1/fpm/php.ini
