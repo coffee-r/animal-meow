@@ -89,48 +89,6 @@ class PostControllerTest extends TestCase
         $response->assertRedirect(route('home'));
     }
 
-    public function test_新規投稿及びツイート()
-    {
-        $user = User::factory()->create();
-        $this->actingAs($user);
-
-        $animal = Animal::factory()->create(['id' => 1, 'name' => 'ねこ', 'language' => 'にゃ〜ん🐱']);
-
-        $this->instance(
-            TweetAction::class,
-            Mockery::mock(TweetAction::class, function(MockInterface $mock) {
-                $mock->shouldReceive('__invoke')
-                     ->once()
-                     ->andReturn(new Tweet('にゃん🐱', 'https://example.com'));
-            })
-        );
-
-        $response = $this->post(route('post.store'), ['animalId' => 1, 'message' => 'にゃん🐱', 'withTweet' => true]);
-        $response->assertSessionHas('successMessages');
-        $response->assertRedirect(route('home'));
-    }
-
-    public function test_ツイートに失敗()
-    {
-        $user = User::factory()->create();
-        $this->actingAs($user);
-
-        $animal = Animal::factory()->create(['id' => 1, 'name' => 'ねこ', 'language' => 'にゃ〜ん🐱']);
-
-        $this->instance(
-            TweetAction::class,
-            Mockery::mock(TweetAction::class, function(MockInterface $mock) {
-                $mock->shouldReceive('__invoke')
-                     ->once()
-                     ->andThrowExceptions([new TwitterClientException()]);
-            })
-        );
-
-        $response = $this->post(route('post.store'), ['animalId' => 1, 'message' => 'にゃん🐱', 'withTweet' => true]);
-        $response->assertSessionHas('failMessages');
-        $response->assertRedirect(route('home'));
-    }
-
     public function test_投稿を削除()
     {
         $user = User::factory()->create();
@@ -140,4 +98,48 @@ class PostControllerTest extends TestCase
         $response = $this->delete(route('post.destroy', $post->id));
         $response->assertRedirect(url()->previous());
     }
+
+    // TwitterAPI有料化のため廃止
+    // public function test_新規投稿及びツイート()
+    // {
+    //     $user = User::factory()->create();
+    //     $this->actingAs($user);
+
+    //     $animal = Animal::factory()->create(['id' => 1, 'name' => 'ねこ', 'language' => 'にゃ〜ん🐱']);
+
+    //     $this->instance(
+    //         TweetAction::class,
+    //         Mockery::mock(TweetAction::class, function(MockInterface $mock) {
+    //             $mock->shouldReceive('__invoke')
+    //                  ->once()
+    //                  ->andReturn(new Tweet('にゃん🐱', 'https://example.com'));
+    //         })
+    //     );
+
+    //     $response = $this->post(route('post.store'), ['animalId' => 1, 'message' => 'にゃん🐱', 'withTweet' => true]);
+    //     $response->assertSessionHas('successMessages');
+    //     $response->assertRedirect(route('home'));
+    // }
+
+    // TwitterAPI有料化のため廃止
+    // public function test_ツイートに失敗()
+    // {
+    //     $user = User::factory()->create();
+    //     $this->actingAs($user);
+
+    //     $animal = Animal::factory()->create(['id' => 1, 'name' => 'ねこ', 'language' => 'にゃ〜ん🐱']);
+
+    //     $this->instance(
+    //         TweetAction::class,
+    //         Mockery::mock(TweetAction::class, function(MockInterface $mock) {
+    //             $mock->shouldReceive('__invoke')
+    //                  ->once()
+    //                  ->andThrowExceptions([new TwitterClientException()]);
+    //         })
+    //     );
+
+    //     $response = $this->post(route('post.store'), ['animalId' => 1, 'message' => 'にゃん🐱', 'withTweet' => true]);
+    //     $response->assertSessionHas('failMessages');
+    //     $response->assertRedirect(route('home'));
+    // }
 }

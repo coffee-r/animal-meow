@@ -73,11 +73,12 @@ class PostController extends Controller
             $successMessages[] = "投稿しました。";
 
             // ツイート
-            if ($request->input('withTweet')) {
-                $tweet = $tweetAction($request->input('message'));
-                $successMessages[] = "<a class='underline' href='".$tweet->url."' target='_blank'>Twitter</a>に投稿しました。";
-            }
-        }catch(TwitterClientException | PostStoreException $e){
+            // TwitterAPI有料化のため廃止
+            // if ($request->input('withTweet')) {
+            //     $tweet = $tweetAction($request->input('message'));
+            //     $successMessages[] = "<a class='underline' href='".$tweet->url."' target='_blank'>Twitter</a>に投稿しました。";
+            // }
+        }catch(PostStoreException $e){
             // エラーログ記録
             Log::error($e);
 

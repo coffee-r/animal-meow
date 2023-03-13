@@ -106,7 +106,6 @@ const submitWithdrawal = function(){
                     <ul class="list-disc list-outside pl-5 mt-4">
                         <li>当サイトからあなたのアカウントを削除します。</li>
                         <li>当サイトでのあなたの全ての投稿を削除します。</li>
-                        <li>Twitterへ併せて投稿していた場合の、Twitterのツイートは削除しません。</li>
                         <li>他のユーザー投稿にしたいいねの数は削除しません。</li>
                     </ul>
             
